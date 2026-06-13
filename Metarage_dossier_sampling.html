@@ -1,0 +1,1646 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sampling / Metalab dossier</title>
+    <meta
+      name="description"
+      content="Sampling by Adrian Vega. Metalab application. Body, archive, image, authorship, ida y vuelta dances, projection, sound and choreographic research. French, Dutch and English dossier."
+    >
+    <link rel="stylesheet" href="./desktop-performance.css">
+    <style>
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      body {
+        background: var(--paper);
+      }
+
+      .topbar nav {
+        gap: 14px;
+      }
+
+      .desktop-hero {
+        min-height: calc(100vh - 58px);
+        grid-template-columns: minmax(280px, 0.88fr) minmax(320px, 1.12fr);
+        grid-template-rows: minmax(430px, 1fr) auto;
+      }
+
+      .hero-copy h1 {
+        max-width: 980px;
+        font-size: clamp(3rem, 7.2vw, 7.4rem);
+      }
+
+      .hero-copy p {
+        max-width: 850px;
+      }
+
+      .window-content a,
+      .system-card a,
+      .folder-card a,
+      .portfolio-link a {
+        overflow-wrap: anywhere;
+      }
+
+      .floating-folder {
+        cursor: grab;
+        touch-action: none;
+        user-select: none;
+      }
+
+      .floating-folder.is-dragging {
+        cursor: grabbing;
+      }
+
+      .folder-a {
+        z-index: 9;
+      }
+
+      .folder-b {
+        z-index: 8;
+      }
+
+      .folder-c {
+        z-index: 7;
+      }
+
+      .folder-d {
+        z-index: 6;
+      }
+
+      .folder-e {
+        z-index: 5;
+      }
+
+      .desktop-window {
+        touch-action: none;
+      }
+
+      .essay {
+        max-width: 1120px;
+        margin: 0 auto;
+        display: grid;
+        gap: 20px;
+      }
+
+      .essay p {
+        margin: 0;
+        line-height: 1.55;
+      }
+
+      .essay strong {
+        font-weight: 900;
+      }
+
+      .large-text {
+        font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+      }
+
+      .two-column,
+      .three-column {
+        display: grid;
+        gap: 18px;
+      }
+
+      .two-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .three-column {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .system-card,
+      .text-card,
+      .quote-card,
+      .portfolio-link {
+        border: 2px solid var(--line);
+        background: var(--paper);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .system-card h3,
+      .text-card h3,
+      .quote-card h3,
+      .portfolio-link h3 {
+        margin-top: 0;
+        text-transform: uppercase;
+      }
+
+      .system-card ul,
+      .text-card ul {
+        padding-left: 1.15rem;
+      }
+
+      .system-card li,
+      .text-card li {
+        margin-bottom: 0.35rem;
+      }
+
+      .quote-card {
+        background: var(--acid);
+        font-weight: 850;
+      }
+
+      .quote-card p {
+        font-size: clamp(1.1rem, 2vw, 1.55rem);
+        line-height: 1.35;
+      }
+
+      .wide-card {
+        grid-column: 1 / -1;
+      }
+
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .image-tile,
+      .video-card {
+        border: 2px solid var(--line);
+        background: var(--paper);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .image-tile img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        display: block;
+        border-bottom: 2px solid var(--line);
+      }
+
+      .image-tile p {
+        margin: 0;
+        padding: 12px;
+        font-weight: 800;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .video-frame {
+        aspect-ratio: 16 / 9;
+        border-bottom: 2px solid var(--line);
+        background: #111;
+      }
+
+      .video-frame iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .video-card-copy {
+        display: grid;
+        gap: 8px;
+        padding: 14px;
+      }
+
+      .video-card-copy h3,
+      .video-card-copy p {
+        margin: 0;
+      }
+
+      .video-card-copy h3 {
+        text-transform: uppercase;
+      }
+
+      .phase-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .phase-item {
+        border: 2px solid var(--line);
+        background: var(--paper);
+        box-shadow: 4px 4px 0 var(--line);
+        padding: 16px;
+      }
+
+      .phase-item strong {
+        display: block;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+      }
+
+      .phase-item p {
+        margin: 0;
+      }
+
+      .mini-index {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .mini-index a,
+      .mini-index span {
+        border: 2px solid var(--line);
+        background: var(--acid);
+        color: var(--ink);
+        padding: 8px 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+
+      .lang-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .lang-block {
+        border: 2px solid var(--line);
+        background: #fff;
+        padding: 14px;
+      }
+
+      .lang-block strong {
+        display: block;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+
+      .link-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .link-list a {
+        color: var(--ink);
+        font-weight: 900;
+        overflow-wrap: anywhere;
+      }
+
+      .notice {
+        background: var(--acid);
+      }
+
+      .edit-panel {
+        position: fixed;
+        right: 14px;
+        bottom: 14px;
+        z-index: 120;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: min(520px, calc(100vw - 28px));
+        gap: 8px;
+        border: 2px solid var(--line);
+        background: var(--paper);
+        box-shadow: 6px 6px 0 var(--line);
+        padding: 8px;
+      }
+
+      .edit-panel button {
+        border: 2px solid var(--line);
+        background: var(--acid);
+        color: var(--ink);
+        padding: 8px 10px;
+        font: inherit;
+        font-size: 0.78rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .edit-panel button:hover,
+      .edit-panel button:focus-visible {
+        background: var(--hot);
+        color: #fff;
+      }
+
+      body.edit-mode [data-edit-text] {
+        outline: 2px dashed var(--hot);
+        outline-offset: 3px;
+        cursor: text;
+      }
+
+      body.edit-mode img[data-edit-image] {
+        outline: 3px dashed var(--hot);
+        outline-offset: -8px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 900px) {
+        .desktop-hero,
+        .two-column,
+        .three-column,
+        .lang-grid,
+        .image-grid,
+        .video-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .wide-card {
+          grid-column: auto;
+        }
+
+        .topbar nav {
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="boot" aria-hidden="true">
+      <div class="boot-log">
+        <span>loading sampling_application...</span>
+        <span>mounting digital_bodies_materials.zip</span>
+        <span>separating sampling_from_buffering</span>
+        <span>checking camera / mylar / shoes / ball / cyclorama</span>
+        <span>body online</span>
+      </div>
+    </div>
+
+    <div class="cursor-tag" aria-hidden="true">sampling</div>
+    <div class="signal-line" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#desktop" data-cursor="Metalab">SAMPLING / METALAB</a>
+      <nav aria-label="Main navigation">
+        <a href="#sampling" data-cursor="project">SAMPLING</a>
+        <a href="#methodology" data-cursor="method">METODOLOGIA</a>
+        <a href="#objectives" data-cursor="labs">OBJETIVOS</a>
+        <a href="#portfolio" data-cursor="materials">PORTFOLIO</a>
+      </nav>
+      <button class="mode-button" type="button" data-mode-toggle>performance mode</button>
+      <button class="panic-button" type="button" data-shuffle>shuffle system</button>
+    </header>
+
+    <main id="desktop">
+      <section class="desktop-hero">
+        <div class="autoplay-frame" aria-hidden="true">
+          <iframe
+            src="https://www.youtube.com/embed/pkP5lEjQFqI?autoplay=1&mute=1&controls=1&loop=1&playlist=pkP5lEjQFqI&modestbranding=1"
+            title="Sampling research loop"
+            allow="autoplay; encrypted-media; picture-in-picture; web-share"
+          ></iframe>
+        </div>
+        <div class="hero-image">
+          <img
+            src="./assets/sampling-visual/muestra-proyeccion-mylar-publico.jpg"
+            alt="Sampling open studio with projection, mylar and body"
+            data-edit-image
+          >
+        </div>
+        <div class="hero-copy">
+          <p class="sysline">C:/SAMPLING/METALAB_APPLICATION</p>
+          <h1 data-edit-text>archive body image archive body</h1>
+          <p data-edit-text>
+            FR / Sampling est la première oeuvre scénique individuelle d'Adrian Vega: une recherche
+            chorégraphique où le corps agit comme archive, écran, capteur et sampler. NL / Sampling is het
+            eerste individuele scenische werk van Adrian Vega: een choreografisch onderzoek waarin het
+            lichaam functioneert als archief, scherm, sensor en sampler. EN / Sampling is Adrian Vega's
+            first individual theatrical work: a choreographic research where the body acts as archive,
+            screen, sensor and sampler.
+          </p>
+          <div class="tag-list">
+            <span>body-screen</span>
+            <span>ida y vuelta dances</span>
+            <span>zapateado del breaking</span>
+            <span>camera-body</span>
+            <span>Brussels / Forest</span>
+          </div>
+        </div>
+        <div class="status-panel">
+          <span>status: research alive / first theatrical work</span>
+          <span>format: choreographic work / device / open test</span>
+          <span>signal: slow production, real ecosystem</span>
+        </div>
+        <button class="floating-folder folder-a folder-style-ticket" type="button" data-open="sampling" data-draggable-folder data-title="SAMPLING">
+          <span class="folder-title">Sampling</span>
+        </button>
+        <button class="floating-folder folder-b folder-style-puma" type="button" data-open="methodology" data-draggable-folder data-title="METHOD">
+          <span class="folder-title">Methodology</span>
+        </button>
+        <button class="floating-folder folder-c folder-style-volume" type="button" data-open="objectives" data-draggable-folder data-title="OBJECTIVES">
+          <span class="folder-title">Objectives</span>
+        </button>
+        <button class="floating-folder folder-d folder-style-rounded" type="button" data-open="portfolio" data-draggable-folder data-title="PORTFOLIO">
+          <span class="folder-title">Portfolio</span>
+        </button>
+        <button class="floating-folder folder-e folder-style-bug" type="button" data-open="device" data-draggable-folder data-title="DEVICE">
+          <span class="folder-title">Device</span>
+        </button>
+      </section>
+
+      <section class="marquee" aria-label="Keywords">
+        <div>
+          <span>sample</span>
+          <span>compas expandido</span>
+          <span>camera-body</span>
+          <span>mylar</span>
+          <span>ball</span>
+          <span>shoes</span>
+          <span>silence</span>
+          <span>BOE</span>
+          <span>Forest</span>
+        </div>
+      </section>
+
+      <section class="window intro-window application-window" id="sampling">
+        <div class="window-bar">
+          <span>SAMPLING.project</span>
+          <span>_ [] x</span>
+        </div>
+        <div class="window-content intro-grid">
+          <p data-edit-text>
+            FR / Sampling vient de Digital Bodies - Echo & Delay, une recherche qui a ouvert deux lignes:
+            Buffering, liée à l'installation, à la latence, aux écrans brisés et aux systèmes autonomes
+            d'image; et Sampling, centrée sur le corps chorégraphique, le théâtre, l'archive, le rythme,
+            l'auteur et l'identité. Cette candidature concerne spécifiquement Sampling.
+          </p>
+          <p data-edit-text>
+            NL / Het project komt naar Metalab terwijl Adrian naar Brussel verhuist. Na tijdelijke verblijven
+            in Montgomery en Parvis de Saint-Gilles verhuist hij in juli 2026 naar Vorst met een huurcontract
+            van drie jaar. EN / Metalab can become a first real entrance into the artistic ecosystem of
+            Brussels: interlocution, dramaturgical distance, public feedback and a way to test how the work
+            is read outside its Iberian context.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="application">
+        <div class="section-head">
+          <p class="sysline">/PHASE_1/APPLICATION_FRONT_PAGE</p>
+          <h2>Motivation / Motivation / Motivatie</h2>
+        </div>
+        <div class="lang-grid">
+          <article class="lang-block">
+            <strong>FR</strong>
+            <p>
+              Je présente Sampling à Metalab à un moment très concret: je viens d'arriver à Bruxelles et je
+              commence à construire ici une continuité de vie, de travail et de regard. Après presque vingt
+              ans de pratique entre danse, hip hop, flamenco, technique, image et recherche, ce projet ouvre
+              mon premier travail scénique individuel. Metalab m'intéresse comme un lieu d'accompagnement,
+              de friction dramaturgique et d'entrée réelle dans l'écosystème artistique bruxellois.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>NL</strong>
+            <p>
+              Ik dien Sampling in bij Metalab op een heel precies moment: ik ben net in Brussel aangekomen
+              en begin hier een continuiteit van leven, werk en blik op te bouwen. Na bijna twintig jaar
+              praktijk tussen dans, hiphop, flamenco, techniek, beeld en onderzoek opent dit project mijn
+              eerste individuele scenische werk. Metalab interesseert mij als plek voor begeleiding,
+              dramaturgische frictie en een echte toegang tot het Brusselse artistieke ecosysteem.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>EN</strong>
+            <p>
+              I am applying to Metalab with Sampling at a very specific moment: I have just arrived in
+              Brussels and I am starting to build a continuity of life, work and artistic attention here.
+              After almost twenty years of practice across dance, hip hop, flamenco, technical work, image
+              and research, this project opens my first individual theatrical work. Metalab matters as a
+              place for accompaniment, dramaturgical friction and a real entrance into Brussels' artistic
+              ecosystem.
+            </p>
+          </article>
+        </div>
+        <div class="two-column">
+          <article class="portfolio-link notice">
+            <h3>Phase 1 / Web dossier</h3>
+            <p>
+              FR / Ce site rassemble le texte, les vidéos et le portfolio pour la candidature. NL / Deze
+              website verzamelt de tekst, video's en portfolio voor de aanvraag. EN / This website gathers
+              the application text, videos and portfolio.
+            </p>
+            <p><a href="https://adrianvegainfo.github.io/Sampling.metarage/">Public web dossier</a></p>
+          </article>
+          <article class="portfolio-link notice">
+            <h3>Phase 2 / Material archive</h3>
+            <p>
+              FR / Les matériaux complets seront téléversés ensuite pour laisser le temps au dossier de
+              respirer. NL / De volledige materialen worden later opgeladen zodat deze eerste fase helder
+              blijft. EN / Full materials will be uploaded later so this first phase can remain precise.
+            </p>
+            <p><a href="https://drive.google.com/drive/folders/1l2qYD9uSCw4IzxpDmVivtd3GStCjO6WI?usp=sharing">Google Drive folder for phase 2</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="sampling-summary">
+        <div class="section-head">
+          <p class="sysline">/SAMPLING/PROJECT</p>
+          <h2>What Sampling is / Ce qu'est Sampling / Wat Sampling is</h2>
+        </div>
+        <div class="lang-grid">
+          <article class="lang-block">
+            <strong>FR</strong>
+            <p>
+              Sampling est une recherche chorégraphique sur les danses d'aller-retour, l'archive corporelle
+              et l'image comme surface active. Le corps traverse flamenco, breaking, football, culture
+              populaire, mémoire politique, bruit numérique, caméra et projection pour faire apparaître
+              rythme, tension, image, présence, jeu, erreur et mémoire.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>NL</strong>
+            <p>
+              Sampling is een choreografisch onderzoek naar heen-en-weer bewegende dansgeschiedenissen,
+              lichaamsarchief en beeld als actieve oppervlakte. Het lichaam gaat door flamenco, breaking,
+              voetbal, populaire cultuur, politieke herinnering, digitale ruis, camera en projectie om ritme,
+              spanning, beeld, aanwezigheid, spel, fout en geheugen zichtbaar te maken.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>EN</strong>
+            <p>
+              Sampling is a choreographic research into ida y vuelta dances, bodily archive and image as an
+              active surface. The body passes through flamenco, breaking, football, popular culture,
+              political memory, digital noise, camera and projection until rhythm, tension, image, presence,
+              play, failure and memory appear.
+            </p>
+          </article>
+        </div>
+        <div class="essay large-text">
+          <p data-edit-text>
+            Sampling unfolds as the progressive transformation of a scenic space into a device of body,
+            archive, image and sound. The piece begins before it begins: while the audience enters, a
+            seguiriya compas holds the time and the body appears in an apparently casual situation,
+            arranging cables, cameras, shoes, microphones, mylar, projections and installation materials.
+            There is a football on stage. The body plays, passes, tests, activates a memory of football,
+            leisure, childhood, dribbling and popular culture. This first zone is light, ironic and
+            everyday, while it already contains a precise operation: building identity from detail, as if
+            the stage were an almost surgical space where materials are cut, isolated, pasted, displaced
+            and recomposed.
+          </p>
+          <p data-edit-text>
+            The device is assembled in front of the audience. The stage works as an unfinished installation:
+            cameras, cables, shoes, costume-screen, projection, sound, ball and body. At one point, the body
+            disappears while activating or reorganising the space, and that disappearance opens the first
+            projected image: a visual totem, a square over green, a surface between field, cement, screen
+            and archive. From there, the piece enters a zone of stillness, pause, ASMR and listening. The
+            body, without shoes, interacts with mylar, projection, objects and the accumulation of shoes on
+            stage. The costume allows the dance to appear on the body itself: a mobile and still screen
+            where the body observes itself, mythologises itself and becomes a surface of inscription.
+          </p>
+          <p data-edit-text>
+            Later, the light rises progressively until the projection disappears and the space returns to
+            full presence. Another transformation begins: pulse, atonal guitars, body inside the
+            installation, a long pause looking at the audience, observing who observes. The body records its
+            own images: one camera records another camera, one recording records another recording, the
+            scene produces archive while it happens. Choreographically, the work uses zapateado, footwork,
+            fall, stillness, breath, impact, football, camera, projection, costume-screen and sound produced
+            by the body. Identity passes through the body until it is re-signified as rhythm, tension,
+            image, presence, play, failure and memory.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="urgency">
+        <div class="section-head">
+          <p class="sysline">/WHY_NOW</p>
+          <h2>Urgency / Urgence / Urgentie</h2>
+        </div>
+        <div class="lang-grid">
+          <article class="lang-block">
+            <strong>FR</strong>
+            <p>
+              L'urgence vient d'une friction entre corps, auteur et loi. Sampling part d'un trouble: les
+              corps ont produit des imaginaires nationaux, touristiques, folkloriques, sportifs et
+              masculins, mais leur autorité chorégraphique reste souvent déplacée, diluée ou invisible. Le
+              projet met ce manque en scène par la pratique physique.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>NL</strong>
+            <p>
+              De urgentie ontstaat uit een frictie tussen lichaam, auteurschap en wet. Sampling vertrekt
+              vanuit een storing: lichamen hebben nationale, toeristische, folkloristische, sportieve en
+              mannelijke verbeeldingen geproduceerd, terwijl hun choreografische autoriteit vaak verplaatst,
+              verdund of onzichtbaar blijft.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>EN</strong>
+            <p>
+              The urgency comes from a friction between body, authorship and law. Sampling starts from a
+              disturbance: bodies have produced national, tourist, folkloric, sports and masculine
+              imaginaries, while their choreographic authority often remains displaced, diluted or invisible.
+            </p>
+          </article>
+        </div>
+        <div class="two-column">
+          <article class="text-card">
+            <h3>Why now</h3>
+            <p data-edit-text>
+              Sampling comes from a question about bodily authorship: which bodies produce culture,
+              identity and collective imagination, and which bodies are recognised as authors. The project
+              works with a friction between the legal, historical and symbolic frameworks in Spain. Spanish
+              intellectual property law includes choreographies as protected works, and the Constitution
+              recognises artistic creation. The project focuses on the distance between that formal
+              recognition and a cultural history where bodies have built national image, tourism, exoticism,
+              folklore, masculinity, sport and tradition while their authorship remains diluted.
+            </p>
+          </article>
+          <article class="text-card">
+            <h3>Social commitment</h3>
+            <p data-edit-text>
+              During the dictatorship and through its cultural inheritance, Spain built an exportable image
+              through bodies: flamenco bodies, popular bodies, gypsy bodies, feminised bodies, masculinised
+              bodies, sports bodies, tourist bodies, folklorised bodies. Sampling places that fracture on
+              stage through practice: cutting, repeating, delaying, holding, dribbling, failing, recording
+              and recomposing. The social commitment is to open a conversation on tradition, property,
+              body, memory and authorship from presence and physical transformation.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="methodology">
+        <div class="section-head">
+          <p class="sysline">/METODOLOGIA/ARCHIVE_BODY_IMAGE</p>
+          <h2>Methodology / Methodologie / Methodologie</h2>
+        </div>
+        <div class="lang-grid">
+          <article class="lang-block">
+            <strong>FR</strong>
+            <p>
+              La méthode fonctionne comme un circuit: archive -> corps -> image -> archive -> corps. Chaque
+              matériau est coupé, isolé, répété, décalé, retardé, tenu, épuisé et recomposé. L'attention
+              ouvre l'écoute; la tension charge l'image; l'intuition reconnaît la matière avant que le
+              discours puisse la formuler.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>NL</strong>
+            <p>
+              De methode werkt als een circuit: archief -> lichaam -> beeld -> archief -> lichaam. Elk
+              materiaal wordt gesneden, geisoleerd, herhaald, verschoven, vertraagd, vastgehouden,
+              uitgeput en opnieuw gecomponeerd. Aandacht opent het luisteren; spanning laadt het beeld;
+              intuitie herkent materiaal voordat taal het kan formuleren.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>EN</strong>
+            <p>
+              The method works as a circuit: archive -> body -> image -> archive -> body. Each material is
+              cut, isolated, repeated, displaced, delayed, held, exhausted and recomposed. Attention opens
+              listening; tension loads the image; intuition recognises material before discourse can
+              formulate it.
+            </p>
+          </article>
+        </div>
+        <div class="essay large-text">
+          <p data-edit-text>
+            My methodology starts from a circuit between archive, body and image. An archive can be a law,
+            a historical image, a flamenco gesture, a footwork pattern, a hip hop video, a football phrase,
+            a family memory, a camera, a ball, a seguiriya compas, a screen, a digital buzz, a masculine
+            posture, electronic music or an image of country. First I observe where that material lives in
+            the body: in the foot, the back, the breath, the gaze, the floor, tension, attention or
+            intuition. Then I make it pass through physical operations of sampling: cut, isolate, repeat,
+            displace, take out of compas, delay, glitch, hold, exhaust, recompose. The image that appears
+            becomes archive again and enters the body again. The method works as a circuit: archive -> body
+            -> image -> archive -> body.
+          </p>
+          <p data-edit-text>
+            In this process I distinguish attention and tension. Attention opens perception, listens and
+            detects. Tension accumulates, holds and loads an image until it carries weight. I also work
+            through intuition, understood as a bodily knowledge previous to explanation: something the body
+            recognises before discourse can formulate it. Sampling is built from listening, risk,
+            repetition, error, delay, presence and recomposition. The work needs space to test, get lost and
+            fail, like a football training process where the body learns by dribbling, occupying different
+            positions and taking risks before entering a collective composition.
+          </p>
+        </div>
+      </section>
+
+      <section class="piece-dossier" id="three-weeks">
+        <div class="section-head">
+          <p class="sysline">/METALAB/THREE_WEEKS</p>
+          <h2>Three connected weeks / Trois semaines / Drie weken</h2>
+        </div>
+        <div class="lang-grid">
+          <article class="lang-block">
+            <strong>FR</strong>
+            <p>
+              Semaine 1: écriture, mémoire, dramaturgie, cadre critique, auteur et séparation précise entre
+              Sampling, Buffering et Digital Bodies. Semaine 2: application physique de l'hypothèse avec
+              corps, caméra, son, ballon, chaussures, mylar et projection. Semaine 3: résidence technique,
+              lumière, cyclorama, linoleum, test public et retour dramaturgique.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>NL</strong>
+            <p>
+              Week 1: schrijven, herinnering, dramaturgie, kritisch kader, auteurschap en een precieze
+              scheiding tussen Sampling, Buffering en Digital Bodies. Week 2: fysieke toepassing met
+              lichaam, camera, geluid, bal, schoenen, mylar en projectie. Week 3: technische residentie,
+              licht, cyclorama, dansvloer, publieke test en dramaturgische feedback.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>EN</strong>
+            <p>
+              Week 1: writing, memory, dramaturgy, critical frame, authorship and a precise separation
+              between Sampling, Buffering and Digital Bodies. Week 2: physical application through body,
+              camera, sound, ball, shoes, mylar and projection. Week 3: technical residency, light,
+              cyclorama, linoleum, public test and dramaturgical feedback.
+            </p>
+          </article>
+        </div>
+        <div class="three-column">
+          <article class="system-card">
+            <h3>Week 1 / writing and memory</h3>
+            <ul>
+              <li>Clarify dramaturgy, critical frame and bodily authorship.</li>
+              <li>Work on BOE, archive-body-image, identity and legal/symbolic friction.</li>
+              <li>Separate Sampling and Buffering with precision.</li>
+              <li>Identify which Digital Bodies materials belong to Sampling.</li>
+              <li>Meet Brussels-based interlocutors and possible external eyes.</li>
+            </ul>
+          </article>
+          <article class="system-card">
+            <h3>Week 2 / physical hypothesis</h3>
+            <ul>
+              <li>Apply the written hypothesis through body, camera and sound.</li>
+              <li>Test entrance with audience, seguiriya compas, ball and visible installation.</li>
+              <li>Work with shoes, mylar, camera, projection, stillness and body sound.</li>
+              <li>Clean the existing 35-40 minutes of material and identify the missing conclusion.</li>
+              <li>Listen to how the piece asks to be structured.</li>
+            </ul>
+          </article>
+          <article class="system-card">
+            <h3>Week 3 / technical residency and public test</h3>
+            <ul>
+              <li>Test body, camera, projection, sound, light, cyclorama, linoleum and mylar.</li>
+              <li>Enter with a MagicQ 3D lighting hypothesis prepared in advance.</li>
+              <li>Keep the lighting design porous enough to respond to the work.</li>
+              <li>Use my technical autonomy with MagicQ and Compact Connect.</li>
+              <li>Share an open test with public feedback.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="piece-dossier" id="objectives">
+        <div class="section-head">
+          <p class="sysline">/OBJETIVOS/THREE_LABS_OF_FRICTION</p>
+          <h2>Objectives / Objectifs / Doelstellingen</h2>
+        </div>
+        <div class="lang-grid">
+          <article class="lang-block">
+            <strong>FR</strong>
+            <p>
+              Les objectifs sont de vérifier trois frictions: le sol comme instrument, le corps comme écran
+              et les danses d'aller-retour comme archive en mouvement. La résidence doit transformer ces
+              hypothèses en scènes habitables.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>NL</strong>
+            <p>
+              De doelstellingen testen drie fricties: de vloer als instrument, het lichaam als scherm en
+              heen-en-weer bewegende dansgeschiedenissen als levend archief. De residentie moet deze
+              hypothesen omzetten in bewoonbare scenes.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>EN</strong>
+            <p>
+              The objectives test three frictions: the floor as instrument, the body as screen, and ida y
+              vuelta dances as moving archive. The residency should transform these hypotheses into
+              inhabitable scenes.
+            </p>
+          </article>
+        </div>
+        <div class="three-column">
+          <article class="system-card">
+            <h3>Lab A / acoustic body</h3>
+            <p data-edit-text>
+              This laboratory researches the floor as instrument and the body as sound generator. The
+              practice starts from the oscillation between flamenco foot technique and the inversion of
+              breaking: feet, hands, knees, back, breath, fall and drag work as percussive agents.
+              Zapateado leaves the vertical axis and becomes contaminated by horizontality, floorwork,
+              loss of axis and impact.
+            </p>
+            <ul>
+              <li>Zapateado del breaking.</li>
+              <li>Floor as resonant surface.</li>
+              <li>Error, drag and stumble as rhythmic material.</li>
+              <li>Expanded compas made from body sound.</li>
+            </ul>
+          </article>
+          <article class="system-card">
+            <h3>Lab B / body-screen</h3>
+            <p data-edit-text>
+              This laboratory researches the body as surface of inscription, projection and return. Camera,
+              projection, mylar, cyclorama screen, costume-screen, light and delay allow the body to receive
+              images, deform them and return them to the space as presence. One camera records another
+              camera, the image returns to the body, and the stage produces archive while it happens.
+            </p>
+            <ul>
+              <li>Projection over the body.</li>
+              <li>Delay, visual traces and ghost presences.</li>
+              <li>Camera-body and costume-screen.</li>
+              <li>Identity as image, reflection and residue.</li>
+            </ul>
+          </article>
+          <article class="system-card">
+            <h3>Lab C / ida y vuelta dances</h3>
+            <p data-edit-text>
+              This laboratory places ida y vuelta dances at the center of Sampling. It works with gestures
+              that have travelled: flamenco, zapateado, hip hop, breaking, football, dribbling, youth
+              culture, television, Spanish archive, images of country and postdigital memory. The body
+              cuts, repeats, isolates, displaces, delays, holds, exhausts and recomposes these materials.
+            </p>
+            <ul>
+              <li>Archive, tradition and travel.</li>
+              <li>Football dribble as bodily authorship.</li>
+              <li>Footwork, zapateado, ball and shoes.</li>
+              <li>Identity re-signified through body.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="piece-dossier" id="device">
+        <div class="section-head">
+          <p class="sysline">/TECHNICAL_DEVICE/MOBILE_LAB</p>
+          <h2>Technical device / Dispositif technique / Technisch apparaat</h2>
+        </div>
+        <div class="lang-grid">
+          <article class="lang-block">
+            <strong>FR</strong>
+            <p>
+              J'apporte un laboratoire mobile autonome: captation sonore, Ableton, micros de contact,
+              projecteurs, caméras, MagicQ avec Compact Connect, mylar, écran cyclorama, linoleum, chaussures
+              et ballon. Ces outils servent à chercher, pas à fermer prématurément une production.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>NL</strong>
+            <p>
+              Ik breng een autonoom mobiel laboratorium mee: geluidsopname, Ableton, contactmicrofoons,
+              projectoren, camera's, MagicQ met Compact Connect, mylar, cyclorama, dansvloer, schoenen en
+              bal. Deze middelen dienen het onderzoek en sluiten de productie nog niet vast.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>EN</strong>
+            <p>
+              I bring an autonomous mobile laboratory: sound capture, Ableton, contact microphones,
+              projectors, cameras, MagicQ with Compact Connect, mylar, cyclorama screen, linoleum, shoes and
+              football. These tools serve research and avoid fixing production too early.
+            </p>
+          </article>
+        </div>
+        <div class="two-column">
+          <article class="system-card">
+            <h3>Sound capture / floor as instrument</h3>
+            <ul>
+              <li>Zoom H6.</li>
+              <li>Piezo contact microphones.</li>
+              <li>Two Shure SM58.</li>
+              <li>Voice microphone.</li>
+              <li>Ableton Push 2 and Ableton Live.</li>
+              <li>Soma Ether V2 for electromagnetic fields.</li>
+            </ul>
+            <p>
+              The floor, shoes, objects and breath become resonant material. Ableton processes live body
+              sound through echoes, delays, loops, cuts and interruptions.
+            </p>
+          </article>
+          <article class="system-card">
+            <h3>Image / light / latency</h3>
+            <ul>
+              <li>Kodak Mini projector.</li>
+              <li>Epson projector.</li>
+              <li>GoPro Hero 8.</li>
+              <li>Fujifilm X-T3.</li>
+              <li>Tripods and computer.</li>
+              <li>MagicQ with Compact Connect.</li>
+            </ul>
+            <p>
+              Projection, camera, delay and light function as architecture. Documentation is part of the
+              method: images return to the body and feed the composition.
+            </p>
+          </article>
+          <article class="system-card">
+            <h3>Scenic surfaces</h3>
+            <ul>
+              <li>Cyclorama screen.</li>
+              <li>Dance linoleum.</li>
+              <li>Mylar.</li>
+              <li>Costume-screen.</li>
+              <li>Reflective materials.</li>
+              <li>Visible cables.</li>
+            </ul>
+            <p>
+              These surfaces receive, reflect, distort and amplify the body. The linoleum receives impact;
+              mylar returns a broken reflection; the cyclorama holds light and archive.
+            </p>
+          </article>
+          <article class="system-card">
+            <h3>Objects and memory</h3>
+            <ul>
+              <li>Shoes.</li>
+              <li>Football.</li>
+              <li>Cables.</li>
+              <li>Objects from Digital Bodies.</li>
+              <li>Possible industrial-memory materials.</li>
+            </ul>
+            <p>
+              Objects act as physical partners and memory triggers. The football opens play, dribble,
+              leisure, childhood and popular culture. Shoes carry zapateado, impact and repetition.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="piece-dossier" id="brussels">
+        <div class="section-head">
+          <p class="sysline">/BRUSSELS/ECOSYSTEM</p>
+          <h2>Brussels, audience and alliances / Bruxelles, public et alliances / Brussel, publiek en partners</h2>
+        </div>
+        <div class="lang-grid">
+          <article class="lang-block">
+            <strong>FR</strong>
+            <p>
+              Bruxelles est nécessaire parce que le projet a besoin d'être lu à distance de son contexte
+              ibérique. Je viens d'arriver dans la ville, je m'installe à Forest pour trois ans et je cherche
+              des regards qui puissent interroger comment l'identité, l'auteur, la tradition et l'archive se
+              traduisent depuis un autre écosystème.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>NL</strong>
+            <p>
+              Brussel is nodig omdat het project gelezen moet worden op afstand van zijn Iberische context.
+              Ik ben net in de stad aangekomen, ik vestig mij drie jaar in Vorst en zoek blikken die kunnen
+              bevragen hoe identiteit, auteurschap, traditie en archief vanuit een ander ecosysteem worden
+              vertaald.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>EN</strong>
+            <p>
+              Brussels is necessary because the project needs to be read at a distance from its Iberian
+              context. I have just arrived in the city, I am moving to Forest for three years, and I need
+              perspectives that can question how identity, authorship, tradition and archive translate from
+              another ecosystem.
+            </p>
+          </article>
+        </div>
+        <div class="phase-list">
+          <div class="phase-item">
+            <strong>Metalab / Brussels</strong>
+            <p>
+              First real entrance into the city: dramaturgical writing, interlocution, body-device testing
+              and public feedback outside the Iberian context.
+            </p>
+          </div>
+          <div class="phase-item">
+            <strong>Laboral / Gijon-Xixon</strong>
+            <p>
+              Studio access in Adrian's birth city. A longer research phase can be planned there with
+              advance notice.
+            </p>
+          </div>
+          <div class="phase-item">
+            <strong>Antic Teatre / Grec Pro</strong>
+            <p>
+              Adrian is connected to Antic Teatre after Inaudit and works close to its artistic ecosystem.
+              Antic could become a coproduction partner toward a possible Grec context if further support
+              is gathered.
+            </p>
+          </div>
+          <div class="phase-item">
+            <strong>Dansa Metropolitana</strong>
+            <p>
+              A fundamental context in Adrian's development, supporting Los lunares del Puma and Digital
+              Bodies through mediation, young audiences and research formats.
+            </p>
+          </div>
+          <div class="phase-item">
+            <strong>Escena Xixon / Fundacion Municipal de Cultura de Gijon</strong>
+            <p>
+              Context linked to the Digital Bodies research in Gijon/Xixon and a possible future
+              activation of workshops and presentation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="portfolio">
+        <div class="section-head">
+          <p class="sysline">/PORTFOLIO/TRAJECTORY</p>
+          <h2>Portfolio and trajectory / Portfolio et parcours / Portfolio en traject</h2>
+        </div>
+        <div class="lang-grid">
+          <article class="lang-block">
+            <strong>FR</strong>
+            <p>
+              Le portfolio montre la généalogie de Sampling: Digital Bodies comme recherche-mère, Buffering
+              comme ligne d'installation, Inaudit comme écoute du corps-capteur, Los lunares del Puma comme
+              caméra et processus, et We are just okey comme projet de fin d'études où apparaissent chute,
+              impact, jeu et zapateado.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>NL</strong>
+            <p>
+              Het portfolio toont de genealogie van Sampling: Digital Bodies als moederonderzoek, Buffering
+              als installatieve lijn, Inaudit als luisteren naar het sensorlichaam, Los lunares del Puma als
+              camera en proces, en We are just okey als afstudeerproject waarin val, impact, spel en
+              zapateado verschijnen.
+            </p>
+          </article>
+          <article class="lang-block">
+            <strong>EN</strong>
+            <p>
+              The portfolio shows the genealogy of Sampling: Digital Bodies as mother research, Buffering as
+              installation line, Inaudit as listening through the body-sensor, Los lunares del Puma as camera
+              and process, and We are just okey as a final degree project where fall, impact, play and
+              zapateado appear.
+            </p>
+          </article>
+        </div>
+        <div class="folder-grid">
+          <article class="folder-card">
+            <div class="piece-media">
+              <img src="./assets/digital-bodies-cover.jpg" alt="Digital Bodies cover" data-edit-image>
+            </div>
+            <span class="file-type">DIGITAL_BODIES.research</span>
+            <h3>Digital Bodies - Echo & Delay</h3>
+            <p>
+              FR / Recherche-mère sur corps, image, son, archive, delay et installation. NL /
+              Moederonderzoek rond lichaam, beeld, geluid, archief, delay en installatie. EN / Mother
+              research into body, image, sound, archive, delay and installation.
+            </p>
+          </article>
+          <article class="folder-card">
+            <div class="piece-media">
+              <img src="./assets/seleccion-memoria.jpg" alt="Inaudit memory selection" data-edit-image>
+            </div>
+            <span class="file-type">INAUDIT.sound_heritage</span>
+            <h3>Inaudit</h3>
+            <p>
+              FR / Créé avec Adriano Galante: héritage sonore inaudible, espace-instrument et corps-capteur.
+              NL / Gemaakt met Adriano Galante: onhoorbaar sonisch erfgoed, ruimte als instrument en
+              sensorlichaam. EN / Created with Adriano Galante: inaudible sonic heritage, space as
+              instrument and body as sensor.
+            </p>
+          </article>
+          <article class="folder-card">
+            <div class="piece-media">
+              <img src="./assets/puma-button.png" alt="Los lunares del Puma" data-edit-image>
+            </div>
+            <span class="file-type">LOS_LUNARES.performance_vlog</span>
+            <h3>Los lunares del Puma</h3>
+            <p>
+              FR / Processus performance-vlog autour de caméra, journal corporel, post-Hip Hop, flamenco et
+              processus comme résultat artistique. NL / Performance-vlog rond camera, lichaamsdagboek,
+              post-Hip Hop, flamenco en proces als artistiek resultaat. EN / Performance-vlog around camera,
+              body diary, post-Hip Hop, flamenco and process as artistic result.
+            </p>
+          </article>
+          <article class="folder-card">
+            <div class="piece-media">
+              <img src="./assets/we-are-just-ok-horizontal.png" alt="We are just okey" data-edit-image>
+            </div>
+            <span class="file-type">WE_ARE_JUST_OK.final_degree_project</span>
+            <h3>We are just okey</h3>
+            <p>
+              FR / Projet de fin d'études autour de la chute, de l'impact, du sol, du jeu, de l'erreur et du
+              zapateado. NL / Afstudeerproject rond val, impact, vloer, spel, fout en zapateado. EN / Final
+              degree project around fall, impact, floor, game, error and zapateado.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="visuals">
+        <div class="section-head">
+          <p class="sysline">/VISUAL_MATERIALS</p>
+          <h2>Images from Digital Bodies that still work for Sampling</h2>
+        </div>
+        <div class="image-grid">
+          <article class="image-tile">
+            <img src="./assets/sampling-visual/inventario-dispositivos-cables-camaras.jpg" alt="Inventory of devices, cables and cameras" data-edit-image>
+            <p>inventory / cameras / cables / shoes</p>
+          </article>
+          <article class="image-tile">
+            <img src="./assets/sampling-visual/mylar-vertical-microfono-escultura.jpg" alt="Vertical mylar with microphone" data-edit-image>
+            <p>mylar / microphone / listening body</p>
+          </article>
+          <article class="image-tile">
+            <img src="./assets/sampling-visual/proyeccion-fragmentada-monitor.jpg" alt="Projection fragmented over monitor" data-edit-image>
+            <p>monitor / damaged export / Buffering context</p>
+          </article>
+          <article class="image-tile">
+            <img src="./assets/sampling-visual/instalacion-oscura-proyeccion-verde-2.jpg" alt="Installation with projection and body" data-edit-image>
+            <p>body / projection / Sampling</p>
+          </article>
+          <article class="image-tile">
+            <img src="./assets/sampling-visual/mylar-negro-textura-oscura.jpg" alt="Dark mylar texture" data-edit-image>
+            <p>dark mylar / texture / reflection</p>
+          </article>
+          <article class="image-tile">
+            <img src="./assets/sampling-visual/muestra-proyeccion-mylar-publico.jpg" alt="Open studio with projection and public" data-edit-image>
+            <p>open studio / shared test / public</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="videos">
+        <div class="section-head">
+          <p class="sysline">/VIDEO_MATERIALS/AUTOPLAY_MUTED</p>
+          <h2>Video materials / Matériaux vidéo / Videomateriaal</h2>
+        </div>
+        <div class="video-grid">
+          <article class="video-card">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/tvvpnfamsj0?autoplay=1&mute=1&controls=1&loop=1&playlist=tvvpnfamsj0&playsinline=1&rel=0&modestbranding=1"
+                title="Project explanation after residency"
+                allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="video-card-copy">
+              <span class="file-type">PROJECT_EXPLANATION.castellano</span>
+              <h3>Salida de residencia</h3>
+              <p>
+                FR / Explication du projet en espagnol après résidence; les sous-titres français peuvent
+                être préparés dans CapCut. NL / Projectuitleg in het Spaans na residentie; Franse
+                ondertitels kunnen in CapCut worden voorbereid. EN / Project explanation in Spanish after
+                residency; French subtitles can be prepared in CapCut.
+              </p>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/pkP5lEjQFqI?autoplay=1&mute=1&controls=1&loop=1&playlist=pkP5lEjQFqI&playsinline=1&rel=0&modestbranding=1"
+                title="Sampling rehearsal materials"
+                allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="video-card-copy">
+              <span class="file-type">SAMPLING.rehearsal</span>
+              <h3>Sampling rehearsal</h3>
+              <p>
+                FR / Matériaux d'essai de Sampling: corps, caméra, projection, présence et archive
+                corporelle. NL / Repetitiemateriaal van Sampling: lichaam, camera, projectie, aanwezigheid
+                en lichaamsarchief. EN / Sampling rehearsal materials: body, camera, projection, presence
+                and bodily archive.
+              </p>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/uBs8gOrPZEs?autoplay=1&mute=1&controls=1&loop=1&playlist=uBs8gOrPZEs&playsinline=1&rel=0&modestbranding=1"
+                title="Digital Bodies process"
+                allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="video-card-copy">
+              <span class="file-type">BUFFERING.shared_installation_materials</span>
+              <h3>Buffering / shared materials</h3>
+              <p>
+                FR / Matériaux de l'installation vidéo de Buffering qui partagent image, delay et surfaces
+                avec Sampling. NL / Videoinstallatiemateriaal van Buffering dat beeld, delay en oppervlaktes
+                met Sampling deelt. EN / Video installation materials from Buffering sharing image, delay and
+                surfaces with Sampling.
+              </p>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/KozWAIlzfaQ?autoplay=1&mute=1&controls=1&loop=1&playlist=KozWAIlzfaQ&playsinline=1&rel=0&modestbranding=1"
+                title="Dirty pass of Sampling body materials with pulse and atonal guitars"
+                allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="video-card-copy">
+              <span class="file-type">SAMPLING.body_sound_dirty_pass</span>
+              <h3>Body, pulse, atonal guitars</h3>
+              <p>
+                FR / Passage en brut avec corps, pulsation, guitares atonales, sons de l'installation et
+                mylar. NL / Ruwe doorloop met lichaam, puls, atonale gitaren, installatiesound en mylar. EN /
+                Dirty pass with body, pulse, atonal guitars, installation sound and mylar.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="files">
+        <div class="section-head">
+          <p class="sysline">/SUPPORTING_FILES</p>
+          <h2>Expanded material / Matériaux / Materiaal</h2>
+        </div>
+        <div class="two-column">
+          <article class="portfolio-link notice">
+            <h3>Phase 2 Drive archive</h3>
+            <p>
+              FR / Dossier pour téléverser les matériaux complets après cette première phase web. NL / Map
+              om de volledige materialen na deze eerste webfase op te laden. EN / Folder for uploading the
+              full materials after this first web phase.
+            </p>
+            <p><a href="https://drive.google.com/drive/folders/1l2qYD9uSCw4IzxpDmVivtd3GStCjO6WI?usp=sharing">Google Drive / Sampling materials</a></p>
+          </article>
+          <article class="portfolio-link notice">
+            <h3>Web link</h3>
+            <p>
+              FR / Cette version locale pourra être publiée ensuite sur GitHub Pages. NL / Deze lokale versie
+              kan later op GitHub Pages worden gepubliceerd. EN / This local version can later be published
+              through GitHub Pages.
+            </p>
+            <p><a href="https://adrianvegainfo.github.io/Sampling.metarage/">Public web dossier</a></p>
+          </article>
+          <article class="portfolio-link">
+            <h3>Application strategy</h3>
+            <p><a href="./Sampling_plan_estrategia_aplicacion_desco_performance.md">Sampling_plan_estrategia_aplicacion_desco_performance.md</a></p>
+          </article>
+          <article class="portfolio-link">
+            <h3>Theoretical frame</h3>
+            <p><a href="./Sampling_marco_teorico_borrador.md">Sampling_marco_teorico_borrador.md</a></p>
+          </article>
+          <article class="portfolio-link">
+            <h3>Performance / visual dossier</h3>
+            <p><a href="./Sampling_dossier_performance_artes_visuales.md">Sampling_dossier_performance_artes_visuales.md</a></p>
+          </article>
+          <article class="portfolio-link">
+            <h3>Storyline sketch</h3>
+            <p><a href="./Sampling_storyline_boceto_01.md">Sampling_storyline_boceto_01.md</a></p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div class="desktop-layer" id="desktopLayer" aria-live="polite"></div>
+    <div class="edit-panel" aria-label="Local editor">
+      <button type="button" data-edit-toggle>edit mode</button>
+      <button type="button" data-edit-save>guardar</button>
+      <button type="button" data-edit-export>exportar json</button>
+      <button type="button" data-edit-clear>limpiar</button>
+    </div>
+    <input type="file" accept="image/*" data-image-picker hidden>
+
+    <script>
+      const cursor = document.querySelector(".cursor-tag");
+      const signalLine = document.querySelector(".signal-line");
+      const modeToggle = document.querySelector("[data-mode-toggle]");
+      const shuffle = document.querySelector("[data-shuffle]");
+      const desktopLayer = document.querySelector("#desktopLayer");
+      const editToggle = document.querySelector("[data-edit-toggle]");
+      const editSave = document.querySelector("[data-edit-save]");
+      const editExport = document.querySelector("[data-edit-export]");
+      const editClear = document.querySelector("[data-edit-clear]");
+      const imagePicker = document.querySelector("[data-image-picker]");
+      const words = ["sampling", "archive", "body-screen", "compas", "Brussels", "ida-y-vuelta"];
+      let wordIndex = 0;
+      let topWindowZ = 90;
+      let topFolderZ = 20;
+      let imageTarget = null;
+
+      const desktopCards = {
+        sampling: {
+          file: "SAMPLING.theatre",
+          status: "status: phase 1 web dossier / first individual theatrical work",
+          title: "Sampling",
+          tags: ["BODY", "ARCHIVE", "IMAGE", "AUTHORSHIP", "STAGE"],
+          video: "https://www.youtube.com/embed/pkP5lEjQFqI",
+          text:
+            "<strong>FR</strong> Recherche chorégraphique où le corps devient archive, écran, capteur et sampler.<br><strong>NL</strong> Choreografisch onderzoek waarin het lichaam archief, scherm, sensor en sampler wordt.<br><strong>EN</strong> Choreographic research where the body becomes archive, screen, sensor and sampler.",
+          meta: [
+            "format: theatrical work / oeuvre scénique / scenisch werk",
+            "origin: Digital Bodies research",
+            "phase 2: Drive archive for full materials",
+          ],
+        },
+        methodology: {
+          file: "METHODOLOGY.archive_body_image",
+          status: "status: circuit / not linear",
+          title: "Archive body image",
+          tags: ["CUT", "REPEAT", "DELAY", "GLITCH", "RECOMPOSE"],
+          image: "./assets/sampling-visual/inventario-dispositivos-cables-camaras.jpg",
+          text:
+            "<strong>FR</strong> Archive -> corps -> image -> archive -> corps: couper, répéter, retarder, tenir, recomposer.<br><strong>NL</strong> Archief -> lichaam -> beeld -> archief -> lichaam: snijden, herhalen, vertragen, vasthouden, opnieuw componeren.<br><strong>EN</strong> Archive -> body -> image -> archive -> body: cut, repeat, delay, hold, recompose.",
+          meta: [
+            "attention / attention / aandacht",
+            "tension / tension / spanning",
+            "intuition / intuition / intuitie",
+          ],
+        },
+        objectives: {
+          file: "THREE_LABS.friction",
+          status: "status: acoustic / screen / ida-y-vuelta",
+          title: "Three laboratories",
+          tags: ["ACOUSTIC BODY", "BODY-SCREEN", "IDA Y VUELTA", "FRICTION"],
+          image: "./assets/sampling-visual/mylar-vertical-microfono-escultura.jpg",
+          text:
+            "<strong>FR</strong> Trois laboratoires: corps acoustique, corps-écran, danses d'aller-retour.<br><strong>NL</strong> Drie laboratoria: akoestisch lichaam, lichaam-scherm, heen-en-weer dansgeschiedenissen.<br><strong>EN</strong> Three laboratories: acoustic body, body-screen, ida y vuelta dances.",
+          meta: [
+            "week 1: writing / memory",
+            "week 2: body / camera / sound",
+            "week 3: technical residency / public test",
+          ],
+        },
+        portfolio: {
+          file: "PORTFOLIO.trajectory",
+          status: "status: previous processes / expanded archive",
+          title: "Portfolio",
+          tags: ["DIGITAL BODIES", "INAUDIT", "PUMA", "WE ARE JUST OKEY"],
+          image: "./assets/digital-bodies-cover.jpg",
+          text:
+            "<strong>FR</strong> Généalogie: Digital Bodies, Buffering, Inaudit, Los lunares del Puma, We are just okey comme projet de fin d'études.<br><strong>NL</strong> Genealogie: Digital Bodies, Buffering, Inaudit, Los lunares del Puma, We are just okey als afstudeerproject.<br><strong>EN</strong> Genealogy: Digital Bodies, Buffering, Inaudit, Los lunares del Puma, We are just okey as final degree project.",
+          meta: [
+            "Digital Bodies: mother research",
+            "Inaudit: body as sensor",
+            "Los lunares del Puma: camera and process",
+          ],
+        },
+        device: {
+          file: "DEVICE.mobile_lab",
+          status: "status: autonomous technical lab",
+          title: "Technical device",
+          tags: ["SOUND", "PROJECTION", "MYLAR", "CYCLORAMA", "MAGICQ"],
+          image: "./assets/sampling-visual/mylar-microfono-escultura.jpg",
+          text:
+            "<strong>FR</strong> Laboratoire mobile: micros, Ableton, projecteurs, caméras, MagicQ, cyclorama, linoleum, mylar, chaussures et ballon.<br><strong>NL</strong> Mobiel lab: microfoons, Ableton, projectoren, camera's, MagicQ, cyclorama, dansvloer, mylar, schoenen en bal.<br><strong>EN</strong> Mobile lab: microphones, Ableton, projectors, cameras, MagicQ, cyclorama, linoleum, mylar, shoes and football.",
+          meta: [
+            "sound: floor as instrument",
+            "image: camera / projection / delay",
+            "light: MagicQ with Compact Connect",
+          ],
+        },
+      };
+
+      document.addEventListener("mousemove", (event) => {
+        cursor.style.transform = `translate(${event.clientX + 14}px, ${event.clientY + 14}px)`;
+      });
+
+      document.querySelectorAll("[data-cursor]").forEach((element) => {
+        element.addEventListener("mouseenter", () => {
+          cursor.textContent = element.dataset.cursor;
+        });
+        element.addEventListener("mouseleave", () => {
+          cursor.textContent = words[wordIndex];
+        });
+      });
+
+      document.addEventListener("click", () => {
+        wordIndex = (wordIndex + 1) % words.length;
+        cursor.textContent = words[wordIndex];
+      });
+
+      modeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("alt");
+        modeToggle.textContent = document.body.classList.contains("alt") ? "archive mode" : "performance mode";
+      });
+
+      shuffle.addEventListener("click", () => {
+        document.querySelectorAll("[data-draggable-folder]").forEach((folder) => {
+          folder.style.transform = `rotate(${Math.round(-8 + Math.random() * 16)}deg)`;
+          folder.style.marginLeft = `${Math.round(-8 + Math.random() * 16)}px`;
+        });
+        signalLine.classList.remove("is-scanning");
+        window.requestAnimationFrame(() => signalLine.classList.add("is-scanning"));
+      });
+
+      function mediaMarkup(card) {
+        if (card.video) {
+          const videoId = card.video.split("/").pop();
+          const src = `${card.video}?autoplay=1&mute=1&controls=1&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1`;
+          return `<iframe src="${src}" title="${card.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+        }
+        return `<img src="${card.image}" alt="${card.title}">`;
+      }
+
+      window.openDesktopWindow = function openDesktopWindow(key) {
+        const card = desktopCards[key];
+        if (!card) {
+          return;
+        }
+
+        const win = document.createElement("section");
+        win.className = "desktop-window";
+        win.style.setProperty("--window-z", String(++topWindowZ));
+        win.style.left = `${Math.round(32 + Math.random() * 90)}px`;
+        win.style.top = `${Math.round(76 + Math.random() * 90)}px`;
+        win.innerHTML = `
+          <div class="desktop-window-bar">
+            <span>${card.file}</span>
+            <button type="button" data-minimize>_</button>
+            <button type="button" data-close>x</button>
+          </div>
+          <div class="desktop-window-content">
+            <div class="desktop-window-copy">
+              <p class="sysline">${card.status}</p>
+              <h2>${card.title}</h2>
+              <p>${card.text}</p>
+              <div class="desktop-window-tags">
+                ${card.tags.map((tag) => `<span>${tag}</span>`).join("")}
+              </div>
+            </div>
+            <div class="desktop-window-media">${mediaMarkup(card)}</div>
+            <div class="desktop-window-meta">
+              ${card.meta.map((item) => `<span>${item}</span>`).join("")}
+            </div>
+          </div>
+        `;
+
+        win.querySelector("[data-close]").addEventListener("click", () => win.remove());
+        win.querySelector("[data-minimize]").addEventListener("click", () => {
+          win.classList.toggle("is-minimized");
+        });
+        makeDraggable(win, win.querySelector(".desktop-window-bar"), "window");
+        desktopLayer.append(win);
+      };
+
+      document.querySelectorAll("[data-open]").forEach((button) => {
+        button.addEventListener("dblclick", () => window.openDesktopWindow(button.dataset.open));
+        button.addEventListener("click", (event) => {
+          if (event.detail === 1) {
+            button.style.zIndex = String(++topFolderZ);
+          }
+        });
+      });
+
+      function makeDraggable(element, handle, mode) {
+        let active = false;
+        let startX = 0;
+        let startY = 0;
+        let baseX = 0;
+        let baseY = 0;
+
+        handle.addEventListener("pointerdown", (event) => {
+          if (event.target.closest("button") && mode === "window") {
+            return;
+          }
+          active = true;
+          startX = event.clientX;
+          startY = event.clientY;
+
+          if (mode === "folder") {
+            const rect = element.getBoundingClientRect();
+            const parentRect = element.offsetParent.getBoundingClientRect();
+            baseX = rect.left - parentRect.left;
+            baseY = rect.top - parentRect.top;
+            element.style.left = `${baseX}px`;
+            element.style.top = `${baseY}px`;
+            element.style.right = "auto";
+            element.style.bottom = "auto";
+            element.style.margin = "0";
+            element.classList.add("is-dragging");
+            element.style.zIndex = String(++topFolderZ);
+          } else {
+            baseX = parseFloat(element.style.left || 0);
+            baseY = parseFloat(element.style.top || 0);
+            element.style.setProperty("--window-z", String(++topWindowZ));
+          }
+
+          handle.setPointerCapture(event.pointerId);
+        });
+
+        handle.addEventListener("pointermove", (event) => {
+          if (!active) {
+            return;
+          }
+          const dx = event.clientX - startX;
+          const dy = event.clientY - startY;
+          element.style.left = `${baseX + dx}px`;
+          element.style.top = `${baseY + dy}px`;
+        });
+
+        handle.addEventListener("pointerup", (event) => {
+          active = false;
+          element.classList.remove("is-dragging");
+          try {
+            handle.releasePointerCapture(event.pointerId);
+          } catch (error) {
+            /* pointer already released */
+          }
+        });
+      }
+
+      document.querySelectorAll("[data-draggable-folder]").forEach((folder) => {
+        makeDraggable(folder, folder, "folder");
+      });
+
+      function applyEditableState(isEditMode) {
+        document.body.classList.toggle("edit-mode", isEditMode);
+        document.querySelectorAll("[data-edit-text]").forEach((node) => {
+          node.contentEditable = isEditMode ? "true" : "false";
+          node.spellcheck = isEditMode;
+        });
+      }
+
+      function storageKeyForText(index) {
+        return `metarageSamplingText:${index}`;
+      }
+
+      function storageKeyForImage(index) {
+        return `metarageSamplingImage:${index}`;
+      }
+
+      function loadLocalEdits() {
+        document.querySelectorAll("[data-edit-text]").forEach((node, index) => {
+          const value = localStorage.getItem(storageKeyForText(index));
+          if (value !== null) {
+            node.innerHTML = value;
+          }
+        });
+        document.querySelectorAll("img[data-edit-image]").forEach((node, index) => {
+          const value = localStorage.getItem(storageKeyForImage(index));
+          if (value !== null) {
+            node.src = value;
+          }
+        });
+      }
+
+      loadLocalEdits();
+      applyEditableState(false);
+
+      editToggle.addEventListener("click", () => {
+        const isEditMode = !document.body.classList.contains("edit-mode");
+        applyEditableState(isEditMode);
+        editToggle.textContent = isEditMode ? "salir edit" : "edit mode";
+      });
+
+      editSave.addEventListener("click", () => {
+        document.querySelectorAll("[data-edit-text]").forEach((node, index) => {
+          localStorage.setItem(storageKeyForText(index), node.innerHTML);
+        });
+        document.querySelectorAll("img[data-edit-image]").forEach((node, index) => {
+          localStorage.setItem(storageKeyForImage(index), node.src);
+        });
+        editSave.textContent = "guardado";
+        setTimeout(() => {
+          editSave.textContent = "guardar";
+        }, 1200);
+      });
+
+      editClear.addEventListener("click", () => {
+        if (!window.confirm("Limpiar cambios locales guardados en este navegador?")) {
+          return;
+        }
+        Object.keys(localStorage)
+          .filter((key) => key.startsWith("metarageSampling"))
+          .forEach((key) => localStorage.removeItem(key));
+        window.location.reload();
+      });
+
+      editExport.addEventListener("click", () => {
+        const data = {
+          text: Array.from(document.querySelectorAll("[data-edit-text]")).map((node) => node.innerHTML),
+          images: Array.from(document.querySelectorAll("img[data-edit-image]")).map((node) => node.src),
+        };
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "metarage-sampling-local-edits.json";
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+
+      document.querySelectorAll("img[data-edit-image]").forEach((img) => {
+        img.addEventListener("click", () => {
+          if (!document.body.classList.contains("edit-mode")) {
+            return;
+          }
+          imageTarget = img;
+          imagePicker.click();
+        });
+      });
+
+      imagePicker.addEventListener("change", () => {
+        const file = imagePicker.files && imagePicker.files[0];
+        if (!file || !imageTarget) {
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+          imageTarget.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+        imagePicker.value = "";
+      });
+    </script>
+  </body>
+</html>
