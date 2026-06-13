@@ -290,18 +290,7 @@
       }
 
       .edit-panel {
-        position: fixed;
-        right: 14px;
-        bottom: 14px;
-        z-index: 120;
-        display: flex;
-        flex-wrap: wrap;
-        max-width: min(520px, calc(100vw - 28px));
-        gap: 8px;
-        border: 2px solid var(--line);
-        background: var(--paper);
-        box-shadow: 6px 6px 0 var(--line);
-        padding: 8px;
+        display: none !important;
       }
 
       .edit-panel button {
@@ -1292,12 +1281,7 @@
     </main>
 
     <div class="desktop-layer" id="desktopLayer" aria-live="polite"></div>
-    <div class="edit-panel" aria-label="Local editor">
-      <button type="button" data-edit-toggle>edit mode</button>
-      <button type="button" data-edit-save>guardar</button>
-      <button type="button" data-edit-export>exportar json</button>
-      <button type="button" data-edit-clear>limpiar</button>
-    </div>
+    <div class="edit-panel" aria-label="Local editor" hidden></div>
     <input type="file" accept="image/*" data-image-picker hidden>
 
     <script>
@@ -1311,6 +1295,7 @@
       const editExport = document.querySelector("[data-edit-export]");
       const editClear = document.querySelector("[data-edit-clear]");
       const imagePicker = document.querySelector("[data-image-picker]");
+      const EDITOR_ENABLED = false;
       const words = ["sampling", "archive", "body-screen", "compas", "Brussels", "ida-y-vuelta"];
       let wordIndex = 0;
       let topWindowZ = 90;
@@ -1543,6 +1528,14 @@
       });
 
       function applyEditableState(isEditMode) {
+        if (!EDITOR_ENABLED) {
+          document.body.classList.remove("edit-mode");
+          document.querySelectorAll("[data-edit-text]").forEach((node) => {
+            node.contentEditable = "false";
+            node.spellcheck = false;
+          });
+          return;
+        }
         document.body.classList.toggle("edit-mode", isEditMode);
         document.querySelectorAll("[data-edit-text]").forEach((node) => {
           node.contentEditable = isEditMode ? "true" : "false";
@@ -1576,13 +1569,19 @@
       loadLocalEdits();
       applyEditableState(false);
 
-      editToggle.addEventListener("click", () => {
+      editToggle?.addEventListener("click", () => {
+        if (!EDITOR_ENABLED) {
+          return;
+        }
         const isEditMode = !document.body.classList.contains("edit-mode");
         applyEditableState(isEditMode);
         editToggle.textContent = isEditMode ? "salir edit" : "edit mode";
       });
 
-      editSave.addEventListener("click", () => {
+      editSave?.addEventListener("click", () => {
+        if (!EDITOR_ENABLED) {
+          return;
+        }
         document.querySelectorAll("[data-edit-text]").forEach((node, index) => {
           localStorage.setItem(storageKeyForText(index), node.innerHTML);
         });
@@ -1595,7 +1594,10 @@
         }, 1200);
       });
 
-      editClear.addEventListener("click", () => {
+      editClear?.addEventListener("click", () => {
+        if (!EDITOR_ENABLED) {
+          return;
+        }
         if (!window.confirm("Limpiar cambios locales guardados en este navegador?")) {
           return;
         }
@@ -1605,7 +1607,10 @@
         window.location.reload();
       });
 
-      editExport.addEventListener("click", () => {
+      editExport?.addEventListener("click", () => {
+        if (!EDITOR_ENABLED) {
+          return;
+        }
         const data = {
           text: Array.from(document.querySelectorAll("[data-edit-text]")).map((node) => node.innerHTML),
           images: Array.from(document.querySelectorAll("img[data-edit-image]")).map((node) => node.src),
@@ -1625,11 +1630,16 @@
             return;
           }
           imageTarget = img;
-          imagePicker.click();
+          if (EDITOR_ENABLED) {
+            imagePicker.click();
+          }
         });
       });
 
-      imagePicker.addEventListener("change", () => {
+      imagePicker?.addEventListener("change", () => {
+        if (!EDITOR_ENABLED) {
+          return;
+        }
         const file = imagePicker.files && imagePicker.files[0];
         if (!file || !imageTarget) {
           return;
