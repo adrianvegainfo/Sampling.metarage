@@ -1,11 +1,11 @@
 window.SAMPLING_CONTENT = {
   ui: {
     fr: {
-      nav: ["Sampling", "Méthodologie", "Objectifs", "Metalab", "Portfolio"],
+      nav: ["Sampling", "Méthodologie", "Objectifs", "Metalab", "Médiation", "Portfolio"],
       language: "Langue",
       reading: "Mode lecture",
       desktop: "Bureau interactif",
-      performance: "Mode performance",
+      performance: "Dark mode",
       archive: "Mode archive",
       shuffle: "Mélanger le système",
       open: "Ouvrir",
@@ -22,6 +22,8 @@ window.SAMPLING_CONTENT = {
       imported: "Importé",
       exported: "Exporté",
       readAll: "Lire le dossier complet",
+      briefView: "Vue breve",
+      fullPage: "Page complete",
       status: [
         "statut : recherche vivante / première œuvre scénique individuelle",
         "format : solo chorégraphique / dispositif / test ouvert",
@@ -31,11 +33,11 @@ window.SAMPLING_CONTENT = {
         "Sampling est la première œuvre scénique individuelle d’Adrián Vega : une recherche chorégraphique où le corps agit comme archive, écran, capteur et sampler.",
     },
     nl: {
-      nav: ["Sampling", "Methodologie", "Doelstellingen", "Metalab", "Portfolio"],
+      nav: ["Sampling", "Methodologie", "Doelstellingen", "Metalab", "Mediatie", "Portfolio"],
       language: "Taal",
       reading: "Leesmodus",
       desktop: "Interactief bureau",
-      performance: "Performancemodus",
+      performance: "Dark mode",
       archive: "Archiefmodus",
       shuffle: "Systeem mengen",
       open: "Open",
@@ -52,6 +54,8 @@ window.SAMPLING_CONTENT = {
       imported: "Geïmporteerd",
       exported: "Geëxporteerd",
       readAll: "Lees het volledige dossier",
+      briefView: "Korte weergave",
+      fullPage: "Volledige pagina",
       status: [
         "status: levend onderzoek / eerste individuele scenische werk",
         "format: choreografische solo / installatie / open test",
@@ -61,11 +65,11 @@ window.SAMPLING_CONTENT = {
         "Sampling is het eerste individuele scenische werk van Adrián Vega: een choreografisch onderzoek waarin het lichaam functioneert als archief, scherm, sensor en sampler.",
     },
     en: {
-      nav: ["Sampling", "Methodology", "Objectives", "Metalab", "Portfolio"],
+      nav: ["Sampling", "Methodology", "Objectives", "Metalab", "Mediation", "Portfolio"],
       language: "Language",
       reading: "Reading mode",
       desktop: "Interactive desktop",
-      performance: "Performance mode",
+      performance: "Dark mode",
       archive: "Archive mode",
       shuffle: "Shuffle system",
       open: "Open",
@@ -82,6 +86,8 @@ window.SAMPLING_CONTENT = {
       imported: "Imported",
       exported: "Exported",
       readAll: "Read the complete dossier",
+      briefView: "Brief view",
+      fullPage: "Full page",
       status: [
         "status: living research / first individual theatrical work",
         "format: choreographic solo / device / open test",
@@ -121,8 +127,8 @@ window.SAMPLING_CONTENT = {
           },
           {
             title: "Liens",
-            html: `<p><a href="https://youtu.be/pkP5lEjQFqI" target="_blank" rel="noreferrer">Répétitions Sampling</a></p>
-            <p><a href="https://youtu.be/KozWAIlzfaQ" target="_blank" rel="noreferrer">Présentation brute</a></p>
+            html: `<p><a href="https://youtu.be/pkP5lEjQFqI" target="_blank" rel="noreferrer">Test de projection</a></p>
+            <p><a href="https://youtu.be/KozWAIlzfaQ" target="_blank" rel="noreferrer">Corps, pulsation, atonal</a></p>
             <p><a href="./Sampling_Metalab_Metarage_FR_v1.pdf" target="_blank">Dossier PDF</a></p>`,
           },
         ],
@@ -146,8 +152,8 @@ window.SAMPLING_CONTENT = {
           },
           {
             title: "Links",
-            html: `<p><a href="https://youtu.be/pkP5lEjQFqI" target="_blank" rel="noreferrer">Sampling-repetities</a></p>
-            <p><a href="https://youtu.be/KozWAIlzfaQ" target="_blank" rel="noreferrer">Ruwe doorloop</a></p>
+            html: `<p><a href="https://youtu.be/pkP5lEjQFqI" target="_blank" rel="noreferrer">Projectietest</a></p>
+            <p><a href="https://youtu.be/KozWAIlzfaQ" target="_blank" rel="noreferrer">Lichaam, puls, atonaal</a></p>
             <p><a href="./Sampling_Metalab_Metarage_FR_v1.pdf" target="_blank">PDF-dossier</a></p>`,
           },
         ],
@@ -171,8 +177,8 @@ window.SAMPLING_CONTENT = {
           },
           {
             title: "Links",
-            html: `<p><a href="https://youtu.be/pkP5lEjQFqI" target="_blank" rel="noreferrer">Sampling rehearsals</a></p>
-            <p><a href="https://youtu.be/KozWAIlzfaQ" target="_blank" rel="noreferrer">Dirty pass</a></p>
+            html: `<p><a href="https://youtu.be/pkP5lEjQFqI" target="_blank" rel="noreferrer">Projection test</a></p>
+            <p><a href="https://youtu.be/KozWAIlzfaQ" target="_blank" rel="noreferrer">Body, pulse, atonal</a></p>
             <p><a href="./Sampling_Metalab_Metarage_FR_v1.pdf" target="_blank">PDF dossier</a></p>`,
           },
         ],
@@ -313,6 +319,55 @@ window.SAMPLING_CONTENT = {
       },
     },
     {
+      key: "mediation",
+      label: { fr: "Médiation", nl: "Mediatie", en: "Mediation" },
+      action: { fr: "ACTIVER LES ATELIERS", nl: "ACTIVEER DE WORKSHOPS", en: "ACTIVATE THE WORKSHOPS" },
+      file: "MEDIATION.educational_projects",
+      image: "./assets/mediation-institute-installation.jpg",
+      tags: ["CAMERA", "PHONE", "ANALOG", "DIGITAL", "YOUTH"],
+      tabs: {
+        fr: [
+          { title: "Projets", html: `<p>Ces projets de mediation viennent de plusieurs ateliers menes a differentes etapes du travail d'Adrian Vega. Ils prolongent des recherches liees a <em>Digital Bodies</em>, <em>Sampling</em>, aux dispositifs mobiles, au corps-ecran, a l'image retardee et a la relation entre technologies quotidiennes et presence physique.</p><p>Les ateliers s'adressent a des jeunes a partir de 12 ans. Ils proposent une relation critique, ludique et creative avec la technologie: cameras, telephones portables, ecrans, micros, projecteurs et petits dispositifs numeriques sont deja presents dans la vie quotidienne.</p>` },
+          { title: "Dispositifs", html: `<p>La mediation cherche a utiliser ces outils autrement, non pas seulement pour produire une image propre ou reconnaissable, mais pour ouvrir du jeu, de l'erreur, de l'attention, du corps, du rythme et de la composition.</p><p>Une camera peut devenir un corps; un telephone peut devenir une lampe, un miroir, un retard, une partition ou une petite scene; un ecran peut devenir une surface de contact entre l'analogique et le numerique.</p>` },
+          { title: "Galerie", html: `<div class="mediation-collage">
+            <figure><img src="./assets/mediation-camera-stack.jpg" alt="Camera over camera mediation material"><figcaption>camera / screen / feedback</figcaption></figure>
+            <figure><img src="./assets/mediation-installation-sports-hall-variation.jpg" alt="Mobile installation in sports hall"><figcaption>phone as stage</figcaption></figure>
+            <figure><img src="./assets/mediation-institute-installation.jpg" alt="Digital Bodies institute installation"><figcaption>digital bodies / workshop</figcaption></figure>
+            <figure><img src="./assets/mediation-sports-hall-installation.jpg" alt="Installation in sports hall"><figcaption>device / space</figcaption></figure>
+            <figure><img src="./assets/mediation-analog-scroll-circle.jpg" alt="Analog scroll circle"><figcaption>analog scroll</figcaption></figure>
+            <figure><img src="./assets/mediation-stickphones.jpg" alt="Phones and sticks mediation setup"><figcaption>stickphones</figcaption></figure>
+            <figure><img src="./assets/mediation-analog-zoom.jpg" alt="Analog zoom through phone camera"><figcaption>analog zoom</figcaption></figure>
+          </div>` },
+        ],
+        nl: [
+          { title: "Projecten", html: `<p>Deze mediatieprojecten komen voort uit verschillende workshops die Adrian Vega in verschillende fases van zijn werk heeft ontwikkeld. Ze sluiten aan bij onderzoek rond <em>Digital Bodies</em>, <em>Sampling</em>, mobiele apparaten, het lichaam als scherm, vertraagd beeld en de relatie tussen alledaagse technologie en fysieke aanwezigheid.</p><p>De workshops richten zich op jongeren vanaf 12 jaar. Ze stellen een kritische, speelse en creatieve relatie met technologie voor: camera's, mobiele telefoons, schermen, microfoons, projectoren en kleine digitale apparaten maken al deel uit van het dagelijkse leven.</p>` },
+          { title: "Apparaten", html: `<p>De mediatie onderzoekt hoe je ze anders kunt gebruiken: niet alleen om een schoon, correct of herkenbaar beeld te maken, maar om spel, fout, aandacht, lichaam, ritme en compositie te openen.</p><p>Een camera kan een lichaam worden; een telefoon kan een lamp, spiegel, vertraging, partituur of kleine scene worden; een scherm kan een contactoppervlak worden tussen het analoge en het digitale.</p>` },
+          { title: "Galerij", html: `<div class="mediation-collage">
+            <figure><img src="./assets/mediation-camera-stack.jpg" alt="Camera over camera mediation material"><figcaption>camera / screen / feedback</figcaption></figure>
+            <figure><img src="./assets/mediation-installation-sports-hall-variation.jpg" alt="Mobile installation in sports hall"><figcaption>phone as stage</figcaption></figure>
+            <figure><img src="./assets/mediation-institute-installation.jpg" alt="Digital Bodies institute installation"><figcaption>digital bodies / workshop</figcaption></figure>
+            <figure><img src="./assets/mediation-sports-hall-installation.jpg" alt="Installation in sports hall"><figcaption>device / space</figcaption></figure>
+            <figure><img src="./assets/mediation-analog-scroll-circle.jpg" alt="Analog scroll circle"><figcaption>analog scroll</figcaption></figure>
+            <figure><img src="./assets/mediation-stickphones.jpg" alt="Phones and sticks mediation setup"><figcaption>stickphones</figcaption></figure>
+            <figure><img src="./assets/mediation-analog-zoom.jpg" alt="Analog zoom through phone camera"><figcaption>analog zoom</figcaption></figure>
+          </div>` },
+        ],
+        en: [
+          { title: "Projects", html: `<p>These mediation projects come from several workshops developed across different stages of Adrian Vega's work. They extend research connected to <em>Digital Bodies</em>, <em>Sampling</em>, mobile devices, the body as screen, delayed image and the relation between everyday technologies and physical presence.</p><p>The workshops are designed for young people from the age of 12. They propose a critical, playful and creative relationship with technology: cameras, mobile phones, screens, microphones, projectors and small digital devices are already part of daily life.</p>` },
+          { title: "Devices", html: `<p>The mediation asks how to use them differently, not only to produce a clean, correct or recognisable image, but to open play, error, attention, body, rhythm and composition.</p><p>A camera can become a body; a phone can become a lamp, a mirror, a delay, a score or a small stage; a screen can become a contact surface between the analogue and the digital.</p>` },
+          { title: "Gallery", html: `<div class="mediation-collage">
+            <figure><img src="./assets/mediation-camera-stack.jpg" alt="Camera over camera mediation material"><figcaption>camera / screen / feedback</figcaption></figure>
+            <figure><img src="./assets/mediation-installation-sports-hall-variation.jpg" alt="Mobile installation in sports hall"><figcaption>phone as stage</figcaption></figure>
+            <figure><img src="./assets/mediation-institute-installation.jpg" alt="Digital Bodies institute installation"><figcaption>digital bodies / workshop</figcaption></figure>
+            <figure><img src="./assets/mediation-sports-hall-installation.jpg" alt="Installation in sports hall"><figcaption>device / space</figcaption></figure>
+            <figure><img src="./assets/mediation-analog-scroll-circle.jpg" alt="Analog scroll circle"><figcaption>analog scroll</figcaption></figure>
+            <figure><img src="./assets/mediation-stickphones.jpg" alt="Phones and sticks mediation setup"><figcaption>stickphones</figcaption></figure>
+            <figure><img src="./assets/mediation-analog-zoom.jpg" alt="Analog zoom through phone camera"><figcaption>analog zoom</figcaption></figure>
+          </div>` },
+        ],
+      },
+    },
+    {
       key: "portfolio",
       label: { fr: "Portfolio", nl: "Portfolio", en: "Portfolio" },
       action: { fr: "TRACER LA GÉNÉALOGIE", nl: "VOLG DE GENEALOGIE", en: "TRACE THE GENEALOGY" },
@@ -325,18 +380,21 @@ window.SAMPLING_CONTENT = {
           { title: "Inaudit", html: `<p>Créé avec Adriano Galante, <em>Inaudit</em> cherche la mémoire sonore inaudible cachée dans le patrimoine. À La Model, ancienne prison de Barcelone, l’espace devient instrument musical et archive sensible grâce aux dispositifs Soma.</p><p>Le projet devient ensuite une pièce scénique à Antic Teatre et permet de comprendre comment une recherche peut devenir mise en scène.</p>` },
           { title: "Los lunares del Puma", html: `<p><em>Los lunares del Puma</em> naît de l’écoute de mon propre son et d’un héritage corporel entre Hip-Hop et folklore. Le zapateado flamenco devient matière rythmique et poétique qui rencontre breaking et danse contemporaine.</p><p>Ce processus constitue ma première recherche approfondie sur les danses d’aller-retour.</p>` },
           { title: "Liens", html: `<p><a href="https://adrianvega.art/" target="_blank" rel="noreferrer">Site d’Adrián Vega</a></p><p><a href="https://www.youtube.com/watch?v=h5QRH1IsxVc" target="_blank" rel="noreferrer">Inaudit</a></p><p><a href="https://youtu.be/3dWio72gp3c?si=FsL0TACZqv1xqVMi" target="_blank" rel="noreferrer">Teaser Puma</a></p><p><a href="https://www.lacaldera.info/es/publicaciones/el-diario-del-puma" target="_blank" rel="noreferrer">Journal du Puma</a></p>` },
+          { title: "We are just okey", html: `<p><em>We are just okey</em> est un projet de fin d’études autour de la chute, de l’impact, du sol, du jeu, de l’erreur et du zapateado.</p><p>Il contient une première relation entre corps, rythme, accident, pédagogie et scène qui revient ensuite dans <em>Sampling</em>.</p>` },
         ],
         nl: [
           { title: "Genealogie", html: `<p><em>Digital Bodies</em> is het moederonderzoek: lichaam, beeld, geluid, archief, delay en installatie. <em>Buffering</em> is de installatieve lijn. <em>Sampling</em> verplaatst het materiaal naar het choreografische lichaam, de scène en de auteur van het gebaar.</p><p><em>We are just okey</em> is een pedagogisch afstudeerproject met vroege sporen van val, impact, vloer, spel, fout en zapateado.</p>` },
           { title: "Inaudit", html: `<p><em>Inaudit</em>, gemaakt met Adriano Galante, zoekt onhoorbaar geluidsgeheugen in erfgoed. In La Model, de voormalige gevangenis van Barcelona, wordt de ruimte via Soma-apparaten een muziekinstrument en gevoelig archief.</p><p>Het project werd daarna een scenisch werk in Antic Teatre en liet zien hoe onderzoek enscenering kan worden.</p>` },
           { title: "Los lunares del Puma", html: `<p><em>Los lunares del Puma</em> ontstond uit het luisteren naar mijn eigen geluid en een lichamelijke erfenis tussen Hip-Hop en folklore. Flamencozapateado wordt ritmisch en poëtisch materiaal dat breaking en hedendaagse dans ontmoet.</p><p>Dit proces was mijn eerste diepgaande onderzoek naar heen-en-weer dansen.</p>` },
           { title: "Links", html: `<p><a href="https://adrianvega.art/" target="_blank" rel="noreferrer">Website Adrián Vega</a></p><p><a href="https://www.youtube.com/watch?v=h5QRH1IsxVc" target="_blank" rel="noreferrer">Inaudit</a></p><p><a href="https://youtu.be/3dWio72gp3c?si=FsL0TACZqv1xqVMi" target="_blank" rel="noreferrer">Puma teaser</a></p><p><a href="https://www.lacaldera.info/es/publicaciones/el-diario-del-puma" target="_blank" rel="noreferrer">Puma-dagboek</a></p>` },
+          { title: "We are just okey", html: `<p><em>We are just okey</em> is een afstudeerproject rond vallen, impact, vloer, spel, fout en zapateado.</p><p>Het bevat een vroege relatie tussen lichaam, ritme, ongeluk, pedagogie en scène die later in <em>Sampling</em> terugkomt.</p>` },
         ],
         en: [
           { title: "Genealogy", html: `<p><em>Digital Bodies</em> is the mother research: body, image, sound, archive, delay and installation. <em>Buffering</em> is the installation path. <em>Sampling</em> moves those materials towards choreographic body, stage and authorship of gesture.</p><p><em>We are just okey</em> is an educational final degree project containing early seeds of falling, impact, floor, play, error and zapateado.</p>` },
           { title: "Inaudit", html: `<p><em>Inaudit</em>, created with Adriano Galante, searches for inaudible sonic memory hidden in heritage. At La Model, Barcelona’s former prison, Soma devices turn space into a musical instrument and sensitive archive.</p><p>The project later became a theatrical work at Antic Teatre and showed how research can become staging.</p>` },
           { title: "Los lunares del Puma", html: `<p><em>Los lunares del Puma</em> grew from listening to my own sound and a bodily inheritance between Hip-Hop and folklore. Flamenco zapateado becomes rhythmic and poetic material meeting breaking and contemporary dance.</p><p>This process was my first deep research into ida y vuelta dances.</p>` },
           { title: "Links", html: `<p><a href="https://adrianvega.art/" target="_blank" rel="noreferrer">Adrián Vega website</a></p><p><a href="https://www.youtube.com/watch?v=h5QRH1IsxVc" target="_blank" rel="noreferrer">Inaudit</a></p><p><a href="https://youtu.be/3dWio72gp3c?si=FsL0TACZqv1xqVMi" target="_blank" rel="noreferrer">Puma teaser</a></p><p><a href="https://www.lacaldera.info/es/publicaciones/el-diario-del-puma" target="_blank" rel="noreferrer">Puma diary</a></p>` },
+          { title: "We are just okey", html: `<p><em>We are just okey</em> is a final degree project around falling, impact, floor, play, error and zapateado.</p><p>It carries an early relation between body, rhythm, accident, pedagogy and stage that later returns inside <em>Sampling</em>.</p>` },
         ],
       },
     },

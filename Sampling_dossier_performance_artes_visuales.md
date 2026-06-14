@@ -172,6 +172,40 @@ La mediacion no sera un anexo didactico ni una explicacion de la obra. Sera una 
 
 El proyecto educativo de Dansa Metropolitana defiende la danza y las artes del movimiento como espacios de expresion, reflexion, critica y denuncia para publico joven. *Sampling* puede dialogar con esa linea desde una metodologia muy concreta: entrar por el cuerpo antes que por el discurso.
 
+### Educational Mediation Projects / proyectos de mediacion educativa
+
+Esta linea de mediacion nace de varios talleres desarrollados a lo largo de diferentes etapas de las obras de Adrian Vega. No aparece como una actividad externa al trabajo artistico, sino como una practica que ha acompanado procesos vinculados a *Digital Bodies*, *Sampling*, la investigacion con dispositivos moviles, el cuerpo como pantalla, la imagen retardada y la convivencia entre tecnologias cotidianas y presencia fisica.
+
+Los talleres trabajan con jovenes a partir de 12 anos y proponen una relacion critica, divertida y creativa con la tecnologia. El punto de partida es sencillo: camaras, telefonos moviles, pantallas, microfonos, proyectores y pequenos dispositivos digitales ya forman parte de la vida diaria. La mediacion pregunta como usarlos de otra manera: no solo para producir una imagen limpia, correcta o reconocible, sino para abrir juego, composicion, error, atencion, cuerpo, ritmo y pensamiento visual.
+
+La propuesta cuestiona los patrones dominantes de la estetica digital limpia, del contenido pulido y de la imagen siempre optimizada. En lugar de tratar los dispositivos como herramientas neutras de consumo o documentacion, los activa como dispositivos de creatividad. Una camara puede ser un cuerpo; un telefono puede ser una linterna, un espejo, un retardo, una partitura o una pequena escena; una pantalla puede convertirse en superficie de contacto entre lo analogico y lo digital.
+
+El eje pedagogico no es aprender tecnologia como competencia tecnica aislada, sino explorar responsabilidad, mirada, presencia y relacion. Que hacemos cuando grabamos a otro cuerpo? Que tipo de imagen producimos? Como cambia un gesto cuando pasa por una pantalla? Como se puede usar un dispositivo cotidiano sin repetir siempre los mismos codigos de belleza, limpieza, velocidad y exposicion?
+
+**FR / Projets de mediation educative**
+
+Ces projets de mediation viennent de plusieurs ateliers menes a differentes etapes du travail d'Adrian Vega. Ils prolongent des recherches liees a *Digital Bodies*, *Sampling*, aux dispositifs mobiles, au corps-ecran, a l'image retardee et a la relation entre technologies quotidiennes et presence physique.
+
+Les ateliers s'adressent a des jeunes a partir de 12 ans. Ils proposent une relation critique, ludique et creative avec la technologie: cameras, telephones portables, ecrans, micros, projecteurs et petits dispositifs numeriques sont deja presents dans la vie quotidienne. La mediation cherche a les utiliser autrement, non pas seulement pour produire une image propre ou reconnaissable, mais pour ouvrir du jeu, de l'erreur, de l'attention, du corps, du rythme et de la composition.
+
+La proposition questionne l'esthetique numerique dominante, l'image polie et le clean aesthetic. Les dispositifs ne sont pas traites comme de simples outils de consommation ou de documentation, mais comme des moteurs de creation. Une camera peut devenir un corps; un telephone peut devenir une lampe, un miroir, un retard, une partition ou une petite scene; un ecran peut devenir une surface de contact entre l'analogique et le numerique.
+
+**NL / Educatieve mediatieprojecten**
+
+Deze mediatieprojecten komen voort uit verschillende workshops die Adrian Vega in verschillende fases van zijn werk heeft ontwikkeld. Ze sluiten aan bij onderzoek rond *Digital Bodies*, *Sampling*, mobiele apparaten, het lichaam als scherm, vertraagd beeld en de relatie tussen alledaagse technologie en fysieke aanwezigheid.
+
+De workshops richten zich op jongeren vanaf 12 jaar. Ze stellen een kritische, speelse en creatieve relatie met technologie voor: camera's, mobiele telefoons, schermen, microfoons, projectoren en kleine digitale apparaten maken al deel uit van het dagelijkse leven. De mediatie onderzoekt hoe je ze anders kunt gebruiken: niet alleen om een schoon, correct of herkenbaar beeld te maken, maar om spel, fout, aandacht, lichaam, ritme en compositie te openen.
+
+De benadering stelt de dominante digitale esthetiek, het gepolijste beeld en de clean aesthetic in vraag. Apparaten worden niet behandeld als neutrale tools voor consumptie of documentatie, maar als creatieve instrumenten. Een camera kan een lichaam worden; een telefoon kan een lamp, spiegel, vertraging, partituur of kleine scene worden; een scherm kan een contactoppervlak worden tussen het analoge en het digitale.
+
+**EN / Educational Mediation Projects**
+
+These mediation projects come from several workshops developed across different stages of Adrian Vega's work. They extend research connected to *Digital Bodies*, *Sampling*, mobile devices, the body as screen, delayed image and the relation between everyday technologies and physical presence.
+
+The workshops are designed for young people from the age of 12. They propose a critical, playful and creative relationship with technology: cameras, mobile phones, screens, microphones, projectors and small digital devices are already part of daily life. The mediation asks how to use them differently, not only to produce a clean, correct or recognisable image, but to open play, error, attention, body, rhythm and composition.
+
+The proposal questions dominant digital aesthetics, polished content and the clean aesthetic. Devices are not treated as neutral tools for consumption or documentation, but as devices for creativity. A camera can become a body; a phone can become a lamp, a mirror, a delay, a score or a small stage; a screen can become a contact surface between the analogue and the digital.
+
 ### Acciones de mediacion propuestas
 
 - **Taller: Como se aprende una identidad con el cuerpo.** Practica fisica para detectar gestos heredados, posturas de autoridad, formas de silencio y modos de pertenencia.

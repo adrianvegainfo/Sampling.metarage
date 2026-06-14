@@ -103,6 +103,7 @@
     {
       id: "inaudit",
       src: "./assets/portfolio-inaudit.jpg",
+      youtube: "h5QRH1IsxVc",
       file: "INAUDIT.sound_heritage",
       title: "Inaudit",
       html: {
@@ -114,6 +115,7 @@
     {
       id: "puma",
       src: "./assets/portfolio-los-lunares-del-puma.jpg",
+      youtube: "3dWio72gp3c",
       file: "LOS_LUNARES.performance_vlog",
       title: "Los lunares del Puma",
       html: {
@@ -125,6 +127,7 @@
     {
       id: "okey",
       src: "./assets/portfolio-we-are-just-okey.png",
+      youtube: "uGa9oe7glzI",
       file: "WE_ARE_JUST_OK.final_degree_project",
       title: "We are just okey",
       html: {
@@ -132,6 +135,37 @@
         nl: "Afstudeerproject rond val, impact, vloer, spel, fout en zapateado.",
         en: "Final degree project around falling, impact, floor, game, error and zapateado.",
       },
+    },
+  ];
+
+  const portfolioWindowMedia = [
+    {
+      src: "./assets/digital-bodies-cover.jpg",
+      editId: "window-image-portfolio-digital-bodies",
+      alt: "Digital Bodies cover",
+    },
+    {
+      src: "./assets/portfolio-inaudit.jpg",
+      youtube: "h5QRH1IsxVc",
+      editId: "window-image-portfolio-inaudit",
+      alt: "Inaudit",
+    },
+    {
+      src: "./assets/portfolio-los-lunares-del-puma.jpg",
+      youtube: "3dWio72gp3c",
+      editId: "window-image-portfolio-puma",
+      alt: "Los lunares del Puma",
+    },
+    {
+      src: "./assets/digital-bodies-cover.jpg",
+      editId: "window-image-portfolio-links",
+      alt: "Portfolio links",
+    },
+    {
+      src: "./assets/portfolio-we-are-just-okey.png",
+      youtube: "uGa9oe7glzI",
+      editId: "window-image-portfolio-okey",
+      alt: "We are just okey",
     },
   ];
 
@@ -151,11 +185,11 @@
       id: "sampling-rehearsal",
       youtube: "pkP5lEjQFqI",
       file: "SAMPLING.rehearsal",
-      title: { fr: "Répétitions Sampling", nl: "Sampling-repetities", en: "Sampling rehearsal" },
+      title: { fr: "Test de projection", nl: "Projectietest", en: "Projection test" },
       html: {
-        fr: "Matériaux d’essai de Sampling : corps, caméra, projection, présence et archive corporelle.",
-        nl: "Repetitiemateriaal van Sampling: lichaam, camera, projectie, aanwezigheid en lichaamsarchief.",
-        en: "Sampling rehearsal materials: body, camera, projection, presence and bodily archive.",
+        fr: "Matériaux de test de projection : corps, caméra, présence et archive corporelle.",
+        nl: "Projectietestmateriaal: lichaam, camera, aanwezigheid en lichaamsarchief.",
+        en: "Projection test materials: body, camera, presence and bodily archive.",
       },
     },
     {
@@ -173,11 +207,11 @@
       id: "dirty-pass",
       youtube: "KozWAIlzfaQ",
       file: "SAMPLING.body_sound_dirty_pass",
-      title: { fr: "Corps, pulse, guitares atonales", nl: "Lichaam, puls, atonale gitaren", en: "Body, pulse, atonal guitars" },
+      title: { fr: "Corps, pulsation, atonal", nl: "Lichaam, puls, atonaal", en: "Body, pulse, atonal" },
       html: {
-        fr: "Passage en brut avec corps, pulsation, guitares atonales, sons de l’installation et mylar.",
-        nl: "Ruwe doorloop met lichaam, puls, atonale gitaren, installatiesound en mylar.",
-        en: "Dirty pass with body, pulse, atonal guitars, installation sound and mylar.",
+        fr: "Corps, pulsation, sons atonaux, matière d’installation et mylar.",
+        nl: "Lichaam, puls, atonale klank, installatiesound en mylar.",
+        en: "Body, pulse, atonal sound, installation material and mylar.",
       },
     },
   ];
@@ -251,6 +285,8 @@
   }
 
   function migrateContentRevisions() {
+    const storedTextKeys = Object.keys(localStorage).filter((key) => key.startsWith(`${STORAGE_PREFIX}text:`));
+
     Object.keys(localStorage)
       .filter((key) => key.startsWith(`${STORAGE_PREFIX}text:`))
       .forEach((key) => {
@@ -259,6 +295,26 @@
           localStorage.setItem(key, value.replaceAll("Sampling_Metalab_Metarage_dossier_FR.pdf", "Sampling_Metalab_Metarage_FR_v1.pdf"));
         }
       });
+
+    const textReplacements = [
+      ["Répétitions Sampling", "Test de projection"],
+      ["Sampling-repetities", "Projectietest"],
+      ["Sampling rehearsals", "Projection test"],
+      ["Sampling rehearsal", "Projection test"],
+      ["Présentation brute", "Corps, pulsation, atonal"],
+      ["Ruwe doorloop", "Lichaam, puls, atonaal"],
+      ["Dirty pass", "Body, pulse, atonal"],
+      ["Passage en brut", "Corps, pulsation, atonal"],
+    ];
+
+    storedTextKeys.forEach((key) => {
+      let value = localStorage.getItem(key);
+      if (!value) return;
+      textReplacements.forEach(([from, to]) => {
+        value = value.replaceAll(from, to);
+      });
+      localStorage.setItem(key, value);
+    });
 
     const revisions = [
       {
@@ -345,15 +401,26 @@
 
   function youtubeFrame(id, title) {
     return `<iframe
-      src="https://www.youtube.com/embed/${id}?autoplay=0&mute=0&controls=1&playsinline=1&rel=0&modestbranding=1"
+      src="https://www.youtube.com/embed/${id}?autoplay=1&mute=1&controls=1&playsinline=1&rel=0&modestbranding=1"
       title="${title}"
       allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
       allowfullscreen
     ></iframe>`;
   }
 
+  function completeSectionKey(folder) {
+    return folder.key === "portfolio" ? "portfolio-expanded" : folder.key;
+  }
+
+  function scrollToCompleteSection(folder) {
+    const targetKey = completeSectionKey(folder);
+    const target = document.querySelector(`[data-reading-key="${targetKey}"]`) || document.getElementById(targetKey);
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   function renderNavigation() {
-    const keys = ["sampling", "methodology", "objectives", "metalab", "portfolio"];
+    const keys = ["sampling", "methodology", "objectives", "metalab", "mediation", "portfolio"];
     elements.nav.innerHTML = keys
       .map((key, index) => `<a href="#${key}" data-open-key="${key}" data-cursor-label="${ui().nav[index]}">${ui().nav[index]}</a>`)
       .join("");
@@ -439,7 +506,11 @@
     const portfolioCards = portfolioItems
       .map((item) => `<article class="expanded-card">
         <div class="expanded-media">
-          <img src="${item.src}" alt="${item.title}" data-edit-image data-edit-id="expanded-image-${item.id}">
+          ${
+            item.youtube
+              ? youtubeFrame(item.youtube, item.title)
+              : `<img src="${item.src}" alt="${item.title}" data-edit-image data-edit-id="expanded-image-${item.id}">`
+          }
         </div>
         <span class="file-type">${item.file}</span>
         <h3>${item.title}</h3>
@@ -508,7 +579,7 @@
     setEditableState();
   }
 
-  function mediaMarkup(folder) {
+  function mediaMarkup(folder, activeTab = 0) {
     const id = `window-image-${folder.key}`;
     if (folder.video) {
       return `<iframe
@@ -518,7 +589,19 @@
         allowfullscreen
       ></iframe>`;
     }
-    return `<img src="${folder.image}" alt="${folder.label[state.lang]}" data-edit-image data-edit-id="${id}">`;
+    const portfolioMedia = folder.key === "portfolio" ? portfolioWindowMedia[activeTab] || portfolioWindowMedia[0] : null;
+    if (portfolioMedia?.youtube) {
+      return `<iframe
+        src="https://www.youtube.com/embed/${portfolioMedia.youtube}?autoplay=1&mute=1&controls=1&playsinline=1&rel=0&modestbranding=1"
+        title="${portfolioMedia.alt}"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+        allowfullscreen
+      ></iframe>`;
+    }
+    const src = portfolioMedia?.src || folder.image;
+    const editId = portfolioMedia?.editId || id;
+    const alt = portfolioMedia?.alt || folder.label[state.lang];
+    return `<img src="${src}" alt="${alt}" data-edit-image data-edit-id="${editId}">`;
   }
 
   function buildWindowContent(win, folder, activeTab = 0) {
@@ -533,10 +616,14 @@
         <div class="window-tabs">
           ${tabs.map((item, index) => `<button type="button" data-tab="${index}" class="${index === Number(win.dataset.activeTab) ? "is-active" : ""}">${item.title}</button>`).join("")}
         </div>
+        <div class="window-extent" aria-label="${ui().briefView} / ${ui().fullPage}">
+          <span>${ui().briefView}</span>
+          <button type="button" data-full-page data-cursor-label="${ui().fullPage}">${ui().fullPage}</button>
+        </div>
         <div class="window-tab-content" data-edit-text data-edit-id="content-${folder.key}-${win.dataset.activeTab}">${tab.html}</div>
       </div>
       <aside class="window-side">
-        ${mediaMarkup(folder)}
+        ${mediaMarkup(folder, Number(win.dataset.activeTab))}
         <div class="window-tags">${folder.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
       </aside>
       <div class="window-meta">
@@ -550,7 +637,13 @@
         applyStoredEdits(win);
       });
     });
+    win.querySelector("[data-full-page]")?.addEventListener("click", () => {
+      saveCurrentDom();
+      closeWindow(folder.key);
+      window.requestAnimationFrame(() => scrollToCompleteSection(folder));
+    });
     applyStoredEdits(win);
+    bindCursorLabels(win);
   }
 
   function openDesktopWindow(key, position = null) {

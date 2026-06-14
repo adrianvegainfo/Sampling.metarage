@@ -8,14 +8,17 @@
       name="description"
       content="Sampling by Adrián Vega. An interactive Metalab dossier about body, archive, image, authorship and ida y vuelta dances."
     >
-    <link rel="stylesheet" href="./sampling-v2.css?v=20260614-portfolio">
+    <link rel="stylesheet" href="./sampling-v2.css?v=20260614-public-mediation">
   </head>
   <body>
-    <div class="boot" data-boot role="presentation">
+    <div class="boot" data-boot role="presentation" aria-label="Loading Sampling">
+      <img class="boot-image" src="./assets/loading-tv-congelada.png" alt="">
       <div class="boot-log">
-        <span>loading sampling_application...</span>
-        <span>archive -> body -> image -> archive -> body</span>
-        <span>body online</span>
+        <span class="boot-title">Loading...</span>
+        <span>Sampling...</span>
+        <span>going out...</span>
+        <span>coming back...</span>
+        <span>printing...</span>
       </div>
     </div>
 
@@ -32,7 +35,7 @@
           <button type="button" data-lang="en">EN</button>
         </div>
         <button class="mode-button" type="button" data-reading-toggle>READING MODE</button>
-        <button class="mode-button" type="button" data-performance-toggle>PERFORMANCE MODE</button>
+        <button class="mode-button" type="button" data-performance-toggle>DARK MODE</button>
         <button class="shuffle-button" type="button" data-shuffle>SHUFFLE</button>
       </div>
     </header>
@@ -75,6 +78,16 @@
         <button class="video-peek" type="button" data-video-peek aria-label="Reveal research video">VIDEO SIGNAL</button>
       </section>
 
+      <section class="marquee living-marquee" aria-label="Keywords">
+        <div class="living-marquee-track">
+          <span>archive body image archive body image</span>
+          <span>archive body image archive body image</span>
+          <span>archive body image archive body image</span>
+          <span>archive body image archive body image</span>
+          <span>archive body image archive body image</span>
+        </div>
+      </section>
+
       <section class="reading-view" data-reading-view aria-live="polite"></section>
     </main>
 
@@ -98,7 +111,7 @@
     <input type="file" accept="image/*" data-image-picker hidden>
     <input type="file" accept="application/json,.json" data-edit-import-picker hidden>
 
-    <script src="./sampling-content.js?v=20260614-portfolio"></script>
-    <script src="./sampling-app.js?v=20260614-portfolio"></script>
+    <script src="./sampling-content.js?v=20260614-public-mediation"></script>
+    <script src="./sampling-app.js?v=20260614-public-mediation"></script>
   </body>
 </html>
