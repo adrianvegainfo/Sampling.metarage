@@ -102,7 +102,7 @@
     },
     {
       id: "inaudit",
-      src: "./assets/seleccion-memoria.jpg",
+      src: "./assets/portfolio-inaudit.jpg",
       file: "INAUDIT.sound_heritage",
       title: "Inaudit",
       html: {
@@ -113,7 +113,7 @@
     },
     {
       id: "puma",
-      src: "./assets/puma-button.png",
+      src: "./assets/portfolio-los-lunares-del-puma.jpg",
       file: "LOS_LUNARES.performance_vlog",
       title: "Los lunares del Puma",
       html: {
@@ -124,7 +124,7 @@
     },
     {
       id: "okey",
-      src: "./assets/we-are-just-ok-horizontal.png",
+      src: "./assets/portfolio-we-are-just-okey.png",
       file: "WE_ARE_JUST_OK.final_degree_project",
       title: "We are just okey",
       html: {
