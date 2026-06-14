@@ -538,8 +538,9 @@ img {
 }
 
 .reading-view {
-  display: none;
-  max-width: 1280px;
+  display: grid;
+  gap: 50px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: clamp(32px, 7vw, 90px) clamp(16px, 4vw, 50px);
 }
@@ -550,8 +551,7 @@ body.reading-mode .desktop-layer {
 }
 
 body.reading-mode .reading-view {
-  display: grid;
-  gap: 50px;
+  padding-top: clamp(32px, 7vw, 90px);
 }
 
 .reading-intro,
@@ -599,6 +599,114 @@ body.reading-mode .reading-view {
 .window-tab-content p {
   font-size: clamp(0.98rem, 1.2vw, 1.14rem);
   line-height: 1.55;
+}
+
+.expanded-grid,
+.image-grid,
+.video-grid,
+.support-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.expanded-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.image-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.video-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.support-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.expanded-card,
+.image-tile,
+.video-card,
+.support-card {
+  border: 2px solid #080808;
+  background: #fff;
+  color: #080808;
+  box-shadow: 6px 6px 0 #080808;
+}
+
+.expanded-card,
+.support-card,
+.video-card-copy {
+  padding: 14px;
+}
+
+.expanded-media,
+.video-frame {
+  background: #111;
+}
+
+.expanded-media img,
+.image-tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.2);
+}
+
+.expanded-card:hover img,
+.image-tile:hover img {
+  filter: grayscale(0) contrast(1.25);
+}
+
+.image-tile p {
+  margin: 0;
+  padding: 10px;
+  font-family: "Courier New", monospace;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.video-frame iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.file-type {
+  display: block;
+  margin: 0 0 10px;
+  font-family: "Courier New", monospace;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--blue);
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+.expanded-card h3,
+.video-card h3,
+.support-card h3 {
+  margin: 0 0 10px;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  line-height: 1;
+}
+
+.expanded-card p,
+.video-card p,
+.support-card p {
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.support-card a,
+.reading-tab a {
+  color: #080808;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
 }
 
 .desktop-layer {
@@ -817,6 +925,10 @@ body.edit-mode .folder {
 body.performance-mode .reading-intro,
 body.performance-mode .reading-section,
 body.performance-mode .reading-tab,
+body.performance-mode .expanded-card,
+body.performance-mode .image-tile,
+body.performance-mode .video-card,
+body.performance-mode .support-card,
 body.performance-mode .desktop-window,
 body.performance-mode .window-tab-content,
 body.performance-mode .hero-copy,
@@ -1019,6 +1131,10 @@ body.performance-mode .edit-panel button {
   }
 
   .reading-tabs,
+  .expanded-grid,
+  .image-grid,
+  .video-grid,
+  .support-grid,
   .desktop-window-body {
     grid-template-columns: 1fr;
   }

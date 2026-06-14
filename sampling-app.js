@@ -49,6 +49,182 @@
     importPicker: document.querySelector("[data-edit-import-picker]"),
   };
 
+  const visualItems = [
+    {
+      id: "inventory",
+      src: "./assets/sampling-visual/inventario-dispositivos-cables-camaras.jpg",
+      alt: "Inventory of devices, cables and cameras",
+      text: "inventory / cameras / cables / shoes",
+    },
+    {
+      id: "mylar-microphone",
+      src: "./assets/sampling-visual/mylar-vertical-microfono-escultura.jpg",
+      alt: "Vertical mylar with microphone",
+      text: "mylar / microphone / listening body",
+    },
+    {
+      id: "monitor",
+      src: "./assets/sampling-visual/proyeccion-fragmentada-monitor.jpg",
+      alt: "Projection fragmented over monitor",
+      text: "monitor / damaged export / Buffering context",
+    },
+    {
+      id: "projection-body",
+      src: "./assets/sampling-visual/instalacion-oscura-proyeccion-verde-2.jpg",
+      alt: "Installation with projection and body",
+      text: "body / projection / Sampling",
+    },
+    {
+      id: "dark-mylar",
+      src: "./assets/sampling-visual/mylar-negro-textura-oscura.jpg",
+      alt: "Dark mylar texture",
+      text: "dark mylar / texture / reflection",
+    },
+    {
+      id: "open-studio",
+      src: "./assets/sampling-visual/muestra-proyeccion-mylar-publico.jpg",
+      alt: "Open studio with projection and public",
+      text: "open studio / shared test / public",
+    },
+  ];
+
+  const portfolioItems = [
+    {
+      id: "digital-bodies",
+      src: "./assets/digital-bodies-cover.jpg",
+      file: "DIGITAL_BODIES.research",
+      title: "Digital Bodies - Echo & Delay",
+      html: {
+        fr: "Recherche-mère sur corps, image, son, archive, delay et installation.",
+        nl: "Moederonderzoek rond lichaam, beeld, geluid, archief, delay en installatie.",
+        en: "Mother research into body, image, sound, archive, delay and installation.",
+      },
+    },
+    {
+      id: "inaudit",
+      src: "./assets/seleccion-memoria.jpg",
+      file: "INAUDIT.sound_heritage",
+      title: "Inaudit",
+      html: {
+        fr: "Créé avec Adriano Galante : héritage sonore inaudible, espace-instrument et corps-capteur.",
+        nl: "Gemaakt met Adriano Galante: onhoorbaar sonisch erfgoed, ruimte als instrument en sensorlichaam.",
+        en: "Created with Adriano Galante: inaudible sonic heritage, space as instrument and body as sensor.",
+      },
+    },
+    {
+      id: "puma",
+      src: "./assets/puma-button.png",
+      file: "LOS_LUNARES.performance_vlog",
+      title: "Los lunares del Puma",
+      html: {
+        fr: "Processus performance-vlog autour de caméra, journal corporel, post-Hip Hop, flamenco et processus comme résultat artistique.",
+        nl: "Performance-vlog rond camera, lichaamsdagboek, post-Hip Hop, flamenco en proces als artistiek resultaat.",
+        en: "Performance-vlog around camera, body diary, post-Hip Hop, flamenco and process as artistic result.",
+      },
+    },
+    {
+      id: "okey",
+      src: "./assets/we-are-just-ok-horizontal.png",
+      file: "WE_ARE_JUST_OK.final_degree_project",
+      title: "We are just okey",
+      html: {
+        fr: "Projet de fin d’études autour de la chute, de l’impact, du sol, du jeu, de l’erreur et du zapateado.",
+        nl: "Afstudeerproject rond val, impact, vloer, spel, fout en zapateado.",
+        en: "Final degree project around falling, impact, floor, game, error and zapateado.",
+      },
+    },
+  ];
+
+  const videoItems = [
+    {
+      id: "residency",
+      youtube: "tvvpnfamsj0",
+      file: "PROJECT_EXPLANATION.castellano",
+      title: { fr: "Sortie de résidence", nl: "Residentie-uitgang", en: "Residency output" },
+      html: {
+        fr: "Explication du projet en espagnol après résidence. Les sous-titres français peuvent être préparés dans CapCut.",
+        nl: "Projectuitleg in het Spaans na residentie. Franse ondertitels kunnen in CapCut worden voorbereid.",
+        en: "Project explanation in Spanish after residency. French subtitles can be prepared in CapCut.",
+      },
+    },
+    {
+      id: "sampling-rehearsal",
+      youtube: "pkP5lEjQFqI",
+      file: "SAMPLING.rehearsal",
+      title: { fr: "Répétitions Sampling", nl: "Sampling-repetities", en: "Sampling rehearsal" },
+      html: {
+        fr: "Matériaux d’essai de Sampling : corps, caméra, projection, présence et archive corporelle.",
+        nl: "Repetitiemateriaal van Sampling: lichaam, camera, projectie, aanwezigheid en lichaamsarchief.",
+        en: "Sampling rehearsal materials: body, camera, projection, presence and bodily archive.",
+      },
+    },
+    {
+      id: "buffering",
+      youtube: "uBs8gOrPZEs",
+      file: "BUFFERING.shared_installation_materials",
+      title: { fr: "Buffering / matériaux partagés", nl: "Buffering / gedeeld materiaal", en: "Buffering / shared materials" },
+      html: {
+        fr: "Matériaux de l’installation vidéo de Buffering qui partagent image, delay et surfaces avec Sampling.",
+        nl: "Videoinstallatiemateriaal van Buffering dat beeld, delay en oppervlaktes met Sampling deelt.",
+        en: "Video installation materials from Buffering sharing image, delay and surfaces with Sampling.",
+      },
+    },
+    {
+      id: "dirty-pass",
+      youtube: "KozWAIlzfaQ",
+      file: "SAMPLING.body_sound_dirty_pass",
+      title: { fr: "Corps, pulse, guitares atonales", nl: "Lichaam, puls, atonale gitaren", en: "Body, pulse, atonal guitars" },
+      html: {
+        fr: "Passage en brut avec corps, pulsation, guitares atonales, sons de l’installation et mylar.",
+        nl: "Ruwe doorloop met lichaam, puls, atonale gitaren, installatiesound en mylar.",
+        en: "Dirty pass with body, pulse, atonal guitars, installation sound and mylar.",
+      },
+    },
+  ];
+
+  const supportItems = [
+    {
+      id: "pdf",
+      title: "PDF Metalab",
+      href: "./Sampling_Metalab_Metarage_FR_v1.pdf",
+      html: {
+        fr: "Dossier PDF français utilisé pour l’application Metalab.",
+        nl: "Frans PDF-dossier voor de Metalab-aanvraag.",
+        en: "French PDF dossier used for the Metalab application.",
+      },
+    },
+    {
+      id: "drive",
+      title: "Phase 2 / Drive archive",
+      href: "https://drive.google.com/drive/folders/1l2qYD9uSCw4IzxpDmVivtd3GStCjO6WI?usp=sharing",
+      html: {
+        fr: "Archive Drive pour téléverser les matériaux complets après cette première phase web.",
+        nl: "Drive-archief om de volledige materialen na deze eerste webfase op te laden.",
+        en: "Drive archive for uploading the full materials after this first web phase.",
+      },
+    },
+    {
+      id: "strategy",
+      title: "Application strategy",
+      href: "./application_strategy.html",
+      html: {
+        fr: "Page de stratégie : formats, trois semaines, matériaux existants, logique de lecture et liens publics.",
+        nl: "Strategiepagina: formats, drie weken, bestaand materiaal, leeslogica en publieke links.",
+        en: "Strategy page: formats, three weeks, existing materials, reading logic and public links.",
+      },
+    },
+    {
+      id: "theory",
+      title: "Theoretical frame",
+      href: "./Sampling_marco_teorico_borrador.md",
+      html: {
+        fr: "Cadre théorique de travail autour de Sampling.",
+        nl: "Theoretisch werkkader rond Sampling.",
+        en: "Working theoretical frame around Sampling.",
+      },
+    },
+  ];
+
   function textKey(id, lang = state.lang) {
     const scope = id === "hero-title" ? "global" : lang;
     return `${STORAGE_PREFIX}text:${scope}:${id}`;
@@ -162,6 +338,20 @@
     return CONTENT.ui[state.lang];
   }
 
+  function localise(value) {
+    if (typeof value === "string") return value;
+    return value?.[state.lang] || value?.fr || "";
+  }
+
+  function youtubeFrame(id, title) {
+    return `<iframe
+      src="https://www.youtube.com/embed/${id}?autoplay=0&mute=0&controls=1&playsinline=1&rel=0&modestbranding=1"
+      title="${title}"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+      allowfullscreen
+    ></iframe>`;
+  }
+
   function renderNavigation() {
     const keys = ["sampling", "methodology", "objectives", "metalab", "portfolio"];
     elements.nav.innerHTML = keys
@@ -250,11 +440,65 @@
         </section>`;
       })
       .join("");
+    const portfolioCards = portfolioItems
+      .map((item) => `<article class="expanded-card">
+        <div class="expanded-media">
+          <img src="${item.src}" alt="${item.title}" data-edit-image data-edit-id="expanded-image-${item.id}">
+        </div>
+        <span class="file-type">${item.file}</span>
+        <h3>${item.title}</h3>
+        <p data-edit-text data-edit-id="expanded-portfolio-${item.id}">${localise(item.html)}</p>
+      </article>`)
+      .join("");
+    const imageCards = visualItems
+      .map((item) => `<article class="image-tile">
+        <img src="${item.src}" alt="${item.alt}" data-edit-image data-edit-id="expanded-image-${item.id}">
+        <p data-edit-text data-edit-id="expanded-visual-${item.id}">${item.text}</p>
+      </article>`)
+      .join("");
+    const videoCards = videoItems
+      .map((item) => `<article class="video-card">
+        <div class="video-frame">${youtubeFrame(item.youtube, localise(item.title))}</div>
+        <div class="video-card-copy">
+          <span class="file-type">${item.file}</span>
+          <h3>${localise(item.title)}</h3>
+          <p data-edit-text data-edit-id="expanded-video-${item.id}">${localise(item.html)}</p>
+        </div>
+      </article>`)
+      .join("");
+    const supportCards = supportItems
+      .map((item) => `<article class="support-card">
+        <h3>${item.title}</h3>
+        <p data-edit-text data-edit-id="expanded-support-${item.id}">${localise(item.html)}</p>
+        <p><a href="${item.href}" target="_blank" rel="noreferrer">${item.href.replace("./", "")}</a></p>
+      </article>`)
+      .join("");
+    const expandedSections = `
+      <section class="reading-section expanded-section" id="portfolio-expanded" data-reading-key="portfolio-expanded">
+        <p class="sysline">/PORTFOLIO/TRAJECTORY</p>
+        <h2>Portfolio</h2>
+        <div class="expanded-grid">${portfolioCards}</div>
+      </section>
+      <section class="reading-section expanded-section" id="visual-materials" data-reading-key="visual-materials">
+        <p class="sysline">/VISUAL_MATERIALS</p>
+        <h2>Images / matériaux visuels</h2>
+        <div class="image-grid">${imageCards}</div>
+      </section>
+      <section class="reading-section expanded-section" id="video-materials" data-reading-key="video-materials">
+        <p class="sysline">/VIDEO_MATERIALS</p>
+        <h2>Matériaux vidéo</h2>
+        <div class="video-grid">${videoCards}</div>
+      </section>
+      <section class="reading-section expanded-section" id="supporting-files" data-reading-key="supporting-files">
+        <p class="sysline">/SUPPORTING_FILES</p>
+        <h2>Expanded material</h2>
+        <div class="support-grid">${supportCards}</div>
+      </section>`;
     elements.readingView.innerHTML = `<section class="reading-intro">
       <p class="sysline">C:/SAMPLING/COMPLETE_DOSSIER</p>
       <h1>${elements.heroTitle.innerHTML}</h1>
       <p>${ui().hero}</p>
-    </section>${sections}`;
+    </section>${sections}${expandedSections}`;
     applyStoredEdits(elements.readingView);
   }
 
