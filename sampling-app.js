@@ -2,6 +2,8 @@
   const CONTENT = window.SAMPLING_CONTENT;
   const LANGUAGES = ["fr", "nl", "en"];
   const STORAGE_PREFIX = "samplingV2:";
+  const EDITOR_ALLOWED_HOSTS = ["127.0.0.1", "localhost", "::1"];
+  const EDITOR_ENABLED = EDITOR_ALLOWED_HOSTS.includes(window.location.hostname);
   const mobileQuery = window.matchMedia("(max-width: 760px)");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -109,6 +111,7 @@
   }
 
   function setEditorStatus(message) {
+    if (!EDITOR_ENABLED) return;
     elements.editStatus.textContent = message;
   }
 
@@ -189,10 +192,12 @@
     elements.performanceToggle.classList.toggle("is-active", state.performance);
     elements.shuffle.textContent = ui().shuffle;
     elements.editToggle.textContent = state.editing ? ui().exitEdit : ui().edit;
-    elements.editSave.textContent = ui().save;
-    elements.editExport.textContent = ui().export;
-    elements.editImport.textContent = ui().import;
-    elements.editClear.textContent = ui().restore;
+    if (EDITOR_ENABLED) {
+      elements.editSave.textContent = ui().save;
+      elements.editExport.textContent = ui().export;
+      elements.editImport.textContent = ui().import;
+      elements.editClear.textContent = ui().restore;
+    }
     document.documentElement.lang = state.lang;
     document.body.classList.toggle("performance-mode", state.performance);
     applyStoredEdits();
@@ -269,7 +274,8 @@
       return `<iframe
         src="https://www.youtube.com/embed/${folder.video}?autoplay=1&mute=1&controls=1&loop=1&playlist=${folder.video}&playsinline=1&rel=0&modestbranding=1"
         title="${folder.label[state.lang]}"
-        allow="autoplay; encrypted-media; picture-in-picture"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+        allowfullscreen
       ></iframe>`;
     }
     return `<img src="${folder.image}" alt="${folder.label[state.lang]}" data-edit-image data-edit-id="${id}">`;
@@ -575,6 +581,7 @@
   }
 
   function bindControls() {
+    document.querySelector(".edit-panel").hidden = !EDITOR_ENABLED;
     elements.languageButtons.forEach((button) => button.addEventListener("click", () => switchLanguage(button.dataset.lang)));
     elements.readingToggle.addEventListener("click", toggleReading);
     elements.performanceToggle.addEventListener("click", () => {
@@ -595,6 +602,7 @@
     elements.hero.addEventListener("pointerleave", () => elements.hero.classList.remove("cursor-reveal"));
 
     elements.editToggle.addEventListener("click", () => {
+      if (!EDITOR_ENABLED) return;
       state.editing = !state.editing;
       releaseAllDrags();
       setEditableState();
@@ -604,12 +612,20 @@
       else scheduleVideoReveal();
     });
     elements.editSave.addEventListener("click", () => {
+      if (!EDITOR_ENABLED) return;
       saveCurrentDom();
       setEditorStatus(ui().saved);
     });
-    elements.editExport.addEventListener("click", exportEdits);
-    elements.editImport.addEventListener("click", () => elements.importPicker.click());
+    elements.editExport.addEventListener("click", () => {
+      if (!EDITOR_ENABLED) return;
+      exportEdits();
+    });
+    elements.editImport.addEventListener("click", () => {
+      if (!EDITOR_ENABLED) return;
+      elements.importPicker.click();
+    });
     elements.editClear.addEventListener("click", () => {
+      if (!EDITOR_ENABLED) return;
       if (!window.confirm("¿Restaurar el contenido original y borrar los cambios locales?")) return;
       Object.keys(localStorage)
         .filter((key) => key.startsWith(STORAGE_PREFIX) || key.startsWith("metarageSampling"))
@@ -618,6 +634,7 @@
     });
 
     elements.importPicker.addEventListener("change", async () => {
+      if (!EDITOR_ENABLED) return;
       const file = elements.importPicker.files?.[0];
       if (!file) return;
       try {
@@ -633,6 +650,7 @@
     });
 
     elements.imagePicker.addEventListener("change", () => {
+      if (!EDITOR_ENABLED) return;
       const file = elements.imagePicker.files?.[0];
       if (!file || !state.imageTarget) return;
       const reader = new FileReader();

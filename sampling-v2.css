@@ -772,6 +772,10 @@ body.reading-mode .reading-view {
   box-shadow: 7px 7px 0 var(--acid);
 }
 
+.edit-panel[hidden] {
+  display: none !important;
+}
+
 .edit-panel button {
   border: 1px solid #080808;
   padding: 7px 9px;
