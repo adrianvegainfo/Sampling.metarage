@@ -556,6 +556,7 @@ body.reading-mode .reading-view {
 
 .reading-intro,
 .reading-section {
+  scroll-margin-top: 76px;
   border: 2px solid #080808;
   padding: clamp(18px, 4vw, 44px);
   background: var(--paper);

@@ -360,11 +360,7 @@
     elements.nav.querySelectorAll("[data-open-key]").forEach((link) => {
       link.addEventListener("click", (event) => {
         event.preventDefault();
-        if (state.reading) {
-          document.querySelector(`[data-reading-key="${link.dataset.openKey}"]`)?.scrollIntoView({ behavior: "smooth" });
-        } else {
-          openDesktopWindow(link.dataset.openKey);
-        }
+        document.querySelector(`[data-reading-key="${link.dataset.openKey}"]`)?.scrollIntoView({ behavior: "smooth" });
       });
     });
   }
