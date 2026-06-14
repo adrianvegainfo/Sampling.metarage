@@ -4,10 +4,10 @@ window.SAMPLING_CONTENT = {
       nav: ["Sampling", "Méthodologie", "Objectifs", "Metalab", "Médiation", "Portfolio"],
       language: "Langue",
       reading: "Mode lecture",
-      desktop: "Bureau interactif",
+      desktop: "Mode interactif",
       performance: "Dark mode",
       archive: "Mode archive",
-      shuffle: "Mélanger le système",
+      shuffle: "Mélanger le bureau",
       open: "Ouvrir",
       close: "Fermer",
       edit: "Éditer",
@@ -36,10 +36,10 @@ window.SAMPLING_CONTENT = {
       nav: ["Sampling", "Methodologie", "Doelstellingen", "Metalab", "Mediatie", "Portfolio"],
       language: "Taal",
       reading: "Leesmodus",
-      desktop: "Interactief bureau",
+      desktop: "Interactieve modus",
       performance: "Dark mode",
       archive: "Archiefmodus",
-      shuffle: "Systeem mengen",
+      shuffle: "Bureau mengen",
       open: "Open",
       close: "Sluiten",
       edit: "Bewerken",
@@ -67,11 +67,11 @@ window.SAMPLING_CONTENT = {
     en: {
       nav: ["Sampling", "Methodology", "Objectives", "Metalab", "Mediation", "Portfolio"],
       language: "Language",
-      reading: "Reading mode",
-      desktop: "Interactive desktop",
+      reading: "Read Mode",
+      desktop: "Interactive Mode",
       performance: "Dark mode",
       archive: "Archive mode",
-      shuffle: "Shuffle system",
+      shuffle: "Shuffle desktop",
       open: "Open",
       close: "Close",
       edit: "Edit",
@@ -129,7 +129,7 @@ window.SAMPLING_CONTENT = {
             title: "Liens",
             html: `<p><a href="https://youtu.be/pkP5lEjQFqI" target="_blank" rel="noreferrer">Test de projection</a></p>
             <p><a href="https://youtu.be/KozWAIlzfaQ" target="_blank" rel="noreferrer">Corps, pulsation, atonal</a></p>
-            <p><a href="./Sampling_Metalab_Metarage_FR_v1.pdf" target="_blank">Dossier PDF</a></p>`,
+            <p><a href="./Sampling_Metalab_Metarage_FR_v3.pdf" target="_blank">Dossier PDF</a></p>`,
           },
         ],
         nl: [
@@ -154,7 +154,7 @@ window.SAMPLING_CONTENT = {
             title: "Links",
             html: `<p><a href="https://youtu.be/pkP5lEjQFqI" target="_blank" rel="noreferrer">Projectietest</a></p>
             <p><a href="https://youtu.be/KozWAIlzfaQ" target="_blank" rel="noreferrer">Lichaam, puls, atonaal</a></p>
-            <p><a href="./Sampling_Metalab_Metarage_FR_v1.pdf" target="_blank">PDF-dossier</a></p>`,
+            <p><a href="./Sampling_Metalab_Metarage_FR_v3.pdf" target="_blank">PDF-dossier</a></p>`,
           },
         ],
         en: [
@@ -179,7 +179,7 @@ window.SAMPLING_CONTENT = {
             title: "Links",
             html: `<p><a href="https://youtu.be/pkP5lEjQFqI" target="_blank" rel="noreferrer">Projection test</a></p>
             <p><a href="https://youtu.be/KozWAIlzfaQ" target="_blank" rel="noreferrer">Body, pulse, atonal</a></p>
-            <p><a href="./Sampling_Metalab_Metarage_FR_v1.pdf" target="_blank">PDF dossier</a></p>`,
+            <p><a href="./Sampling_Metalab_Metarage_FR_v3.pdf" target="_blank">PDF dossier</a></p>`,
           },
         ],
       },

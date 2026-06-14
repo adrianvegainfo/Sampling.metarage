@@ -11,7 +11,7 @@
     lang: LANGUAGES.includes(localStorage.getItem(`${STORAGE_PREFIX}lang`))
       ? localStorage.getItem(`${STORAGE_PREFIX}lang`)
       : "fr",
-    reading: false,
+    reading: mobileQuery.matches,
     performance: localStorage.getItem(`${STORAGE_PREFIX}performance`) === "true",
     editing: false,
     topWindowZ: 360,
@@ -35,6 +35,8 @@
     readingView: document.querySelector("[data-reading-view]"),
     desktopLayer: document.querySelector("[data-desktop-layer]"),
     languageButtons: [...document.querySelectorAll("[data-lang]")],
+    languageToggle: document.querySelector("[data-language-toggle]"),
+    languageSwitcher: document.querySelector(".language-switcher"),
     readingToggle: document.querySelector("[data-reading-toggle]"),
     performanceToggle: document.querySelector("[data-performance-toggle]"),
     shuffle: document.querySelector("[data-shuffle]"),
@@ -47,6 +49,8 @@
     editStatus: document.querySelector("[data-edit-status]"),
     imagePicker: document.querySelector("[data-image-picker]"),
     importPicker: document.querySelector("[data-edit-import-picker]"),
+    bootChoices: [...document.querySelectorAll("[data-boot-choice]")],
+    bootHint: document.querySelector("[data-boot-hint]"),
   };
 
   const visualItems = [
@@ -441,7 +445,9 @@
     });
     elements.readingToggle.textContent = state.reading ? ui().desktop : ui().reading;
     elements.readingToggle.classList.toggle("is-active", state.reading);
-    elements.performanceToggle.textContent = state.performance ? ui().archive : ui().performance;
+    elements.readingToggle.setAttribute("aria-label", state.reading ? ui().desktop : ui().reading);
+    elements.performanceToggle.setAttribute("aria-label", state.performance ? ui().archive : ui().performance);
+    elements.performanceToggle.setAttribute("title", state.performance ? ui().archive : ui().performance);
     elements.performanceToggle.classList.toggle("is-active", state.performance);
     elements.shuffle.textContent = ui().shuffle;
     elements.editToggle.textContent = state.editing ? ui().exitEdit : ui().edit;
@@ -452,6 +458,8 @@
       elements.editClear.textContent = ui().restore;
     }
     document.documentElement.lang = state.lang;
+    document.body.classList.toggle("reading-mode", state.reading);
+    document.body.classList.toggle("interactive-mode", !state.reading);
     document.body.classList.toggle("performance-mode", state.performance);
     applyStoredEdits();
   }
@@ -726,7 +734,7 @@
     };
 
     folder.addEventListener("pointerdown", (event) => {
-      if (state.editing || event.button !== 0) return;
+      if (mobileQuery.matches || state.editing || event.button !== 0) return;
       const rect = folder.getBoundingClientRect();
       const stageRect = elements.folderStage.getBoundingClientRect();
       gesture = {
@@ -759,6 +767,11 @@
       folder.style.top = `${Math.min(Math.max(0, gesture.top + dy), maxTop)}px`;
     });
 
+    folder.addEventListener("click", (event) => {
+      if (!mobileQuery.matches || state.editing) return;
+      event.preventDefault();
+      openDesktopWindow(folder.dataset.key);
+    });
     folder.addEventListener("pointerup", (event) => release(event, true));
     folder.addEventListener("pointercancel", (event) => release(event, false));
     folder.addEventListener("lostpointercapture", () => release(null, false));
@@ -818,7 +831,16 @@
   }
 
   function shuffleFolders() {
-    if (mobileQuery.matches) return;
+    if (mobileQuery.matches) {
+      elements.folderStage.querySelectorAll("[data-folder]").forEach((folder) => {
+        folder.classList.remove("is-shuffled");
+        window.requestAnimationFrame(() => {
+          folder.classList.add("is-shuffled");
+          window.setTimeout(() => folder.classList.remove("is-shuffled"), 520);
+        });
+      });
+      return;
+    }
     const stage = elements.folderStage.getBoundingClientRect();
     elements.folderStage.querySelectorAll("[data-folder]").forEach((folder) => {
       const maxLeft = Math.max(10, stage.width - folder.offsetWidth - 10);
@@ -894,6 +916,33 @@
     renderHero();
   }
 
+  function enterBootMode(mode) {
+    state.reading = mode === "read";
+    document.body.classList.toggle("reading-mode", state.reading);
+    if (state.reading) {
+      state.openWindows.forEach((_, key) => closeWindow(key));
+      stopVideoReveal();
+      window.scrollTo({ top: 0, behavior: "auto" });
+    } else {
+      scheduleVideoReveal();
+      document.querySelector("#desktop")?.scrollIntoView({ behavior: "auto" });
+    }
+    renderHero();
+    elements.boot.classList.add("is-dismissed");
+  }
+
+  function refreshBootChoices() {
+    const recommendedMode = mobileQuery.matches ? "read" : "interactive";
+    const defaultHint =
+      recommendedMode === "read"
+        ? "Recommended here: Read Mode. Start with the complete dossier."
+        : "Recommended here: Interactive Mode. Start with the desktop app-performance.";
+    if (elements.bootHint) elements.bootHint.textContent = defaultHint;
+    elements.bootChoices.forEach((button) => {
+      button.classList.toggle("is-recommended", button.dataset.bootChoice === recommendedMode);
+    });
+  }
+
   function exportEdits() {
     saveCurrentDom();
     const storage = Object.fromEntries(
@@ -915,7 +964,26 @@
 
   function bindControls() {
     document.querySelector(".edit-panel").hidden = !EDITOR_ENABLED;
-    elements.languageButtons.forEach((button) => button.addEventListener("click", () => switchLanguage(button.dataset.lang)));
+    elements.languageButtons.forEach((button) =>
+      button.addEventListener("click", () => {
+        switchLanguage(button.dataset.lang);
+        if (elements.languageSwitcher) elements.languageSwitcher.hidden = true;
+        elements.languageToggle?.setAttribute("aria-expanded", "false");
+      }),
+    );
+    elements.languageToggle?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      if (!elements.languageSwitcher) return;
+      const shouldOpen = elements.languageSwitcher.hidden;
+      elements.languageSwitcher.hidden = !shouldOpen;
+      elements.languageToggle.setAttribute("aria-expanded", String(shouldOpen));
+    });
+    document.addEventListener("click", (event) => {
+      if (!elements.languageSwitcher || elements.languageSwitcher.hidden) return;
+      if (event.target.closest(".language-menu")) return;
+      elements.languageSwitcher.hidden = true;
+      elements.languageToggle?.setAttribute("aria-expanded", "false");
+    });
     elements.readingToggle.addEventListener("click", toggleReading);
     elements.performanceToggle.addEventListener("click", () => {
       state.performance = !state.performance;
@@ -995,13 +1063,20 @@
       elements.imagePicker.value = "";
     });
 
-    const dismissBoot = () => elements.boot.classList.add("is-dismissed");
-    elements.boot.addEventListener("click", dismissBoot);
-    window.addEventListener("keydown", dismissBoot, { once: true });
+    elements.bootChoices.forEach((button) => {
+      const showBootHint = () => {
+        if (elements.bootHint) elements.bootHint.textContent = button.dataset.bootDescription || "";
+      };
+      button.addEventListener("pointerenter", showBootHint);
+      button.addEventListener("pointerdown", showBootHint);
+      button.addEventListener("focus", showBootHint);
+      button.addEventListener("click", () => enterBootMode(button.dataset.bootChoice));
+    });
     window.addEventListener("blur", releaseAllDrags);
     window.addEventListener("pointercancel", releaseAllDrags);
     window.addEventListener("resize", () => {
       releaseAllDrags();
+      refreshBootChoices();
       state.openWindows.forEach((win) => clampToViewport(win));
     });
     document.addEventListener("mousemove", (event) => {
@@ -1013,11 +1088,8 @@
     migrateLegacyEdits();
     migrateContentRevisions();
     bindControls();
-    if (mobileQuery.matches && localStorage.getItem(`${STORAGE_PREFIX}desktopRequested`) !== "true") {
-      state.reading = true;
-      document.body.classList.add("reading-mode");
-    }
     renderAll();
+    refreshBootChoices();
     setEditorStatus(ui().view);
     scheduleVideoReveal();
   }

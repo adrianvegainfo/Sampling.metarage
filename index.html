@@ -8,10 +8,10 @@
       name="description"
       content="Sampling by Adrián Vega. An interactive Metalab dossier about body, archive, image, authorship and ida y vuelta dances."
     >
-    <link rel="stylesheet" href="./sampling-v2.css?v=20260614-public-mediation">
+    <link rel="stylesheet" href="./sampling-v2.css?v=20260614-read-interactive-pdfv3">
   </head>
   <body>
-    <div class="boot" data-boot role="presentation" aria-label="Loading Sampling">
+    <div class="boot" data-boot role="dialog" aria-label="Choose Sampling mode">
       <img class="boot-image" src="./assets/loading-tv-congelada.png" alt="">
       <div class="boot-log">
         <span class="boot-title">Loading...</span>
@@ -19,6 +19,27 @@
         <span>going out...</span>
         <span>coming back...</span>
         <span>printing...</span>
+        <div class="boot-actions" aria-label="Choose how to enter the dossier">
+          <button
+            class="boot-choice"
+            type="button"
+            data-boot-choice="read"
+            data-boot-description="Start with the complete dossier. Clearer for mobile, reading and sending."
+          >
+            Read Mode
+            <small>Dossier first / clean reading</small>
+          </button>
+          <button
+            class="boot-choice"
+            type="button"
+            data-boot-choice="interactive"
+            data-boot-description="Open the desktop app-performance: boxes, windows, movement and shuffle."
+          >
+            Interactive Mode
+            <small>Desktop app / boxes / signal</small>
+          </button>
+        </div>
+        <p class="boot-hint" data-boot-hint>Hover or touch a mode to preview. Click to enter.</p>
       </div>
     </div>
 
@@ -29,14 +50,16 @@
       <a class="brand" href="#desktop" data-cursor-label="sampling">SAMPLING / METALAB</a>
       <nav aria-label="Main navigation" data-nav></nav>
       <div class="toolbar">
-        <div class="language-switcher" role="group" aria-label="Language">
-          <button type="button" data-lang="fr">FR</button>
-          <button type="button" data-lang="nl">NL</button>
-          <button type="button" data-lang="en">EN</button>
+        <button class="mode-button mode-switch" type="button" data-reading-toggle>INTERACTIVE MODE</button>
+        <div class="language-menu">
+          <button class="icon-button" type="button" data-language-toggle aria-label="Language" aria-expanded="false">&#9678;</button>
+          <div class="language-switcher" role="group" aria-label="Language" hidden>
+            <button type="button" data-lang="fr">FR</button>
+            <button type="button" data-lang="nl">NL</button>
+            <button type="button" data-lang="en">EN</button>
+          </div>
         </div>
-        <button class="mode-button" type="button" data-reading-toggle>READING MODE</button>
-        <button class="mode-button" type="button" data-performance-toggle>DARK MODE</button>
-        <button class="shuffle-button" type="button" data-shuffle>SHUFFLE</button>
+        <button class="icon-button" type="button" data-performance-toggle aria-label="Dark mode">&#9680;</button>
       </div>
     </header>
 
@@ -75,6 +98,7 @@
 
         <div class="status-panel" data-status-panel></div>
         <div class="folder-stage" data-folder-stage aria-label="Interactive dossier folders"></div>
+        <button class="shuffle-button desktop-shuffle" type="button" data-shuffle>SHUFFLE DESKTOP</button>
         <button class="video-peek" type="button" data-video-peek aria-label="Reveal research video">VIDEO SIGNAL</button>
       </section>
 
@@ -95,7 +119,7 @@
 
     <footer class="site-footer">
       <strong>Sampling / Adrián Vega</strong>
-      <a href="./Sampling_Metalab_Metarage_FR_v1.pdf" target="_blank">PDF</a>
+      <a href="./Sampling_Metalab_Metarage_FR_v3.pdf" target="_blank">PDF</a>
       <a href="https://drive.google.com/drive/folders/1l2qYD9uSCw4IzxpDmVivtd3GStCjO6WI?usp=sharing" target="_blank" rel="noreferrer">Drive</a>
       <a href="https://adrianvega.art/" target="_blank" rel="noreferrer">adrianvega.art</a>
     </footer>
@@ -111,7 +135,7 @@
     <input type="file" accept="image/*" data-image-picker hidden>
     <input type="file" accept="application/json,.json" data-edit-import-picker hidden>
 
-    <script src="./sampling-content.js?v=20260614-public-mediation"></script>
-    <script src="./sampling-app.js?v=20260614-public-mediation"></script>
+    <script src="./sampling-content.js?v=20260614-read-interactive-pdfv3"></script>
+    <script src="./sampling-app.js?v=20260614-read-interactive-pdfv3"></script>
   </body>
 </html>

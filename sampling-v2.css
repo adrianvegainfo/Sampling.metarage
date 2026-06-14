@@ -93,8 +93,7 @@ img {
   overflow: hidden;
   background: #050505;
   color: #f7f2dc;
-  cursor: pointer;
-  animation: boot-out 3.7s steps(1, end) forwards;
+  cursor: default;
 }
 
 .boot.is-dismissed {
@@ -130,6 +129,8 @@ img {
 .boot-log {
   position: relative;
   z-index: 3;
+  display: grid;
+  gap: 8px;
   width: min(760px, calc(100vw - 28px));
   border: 1px solid #ffec00;
   padding: 18px;
@@ -177,6 +178,72 @@ img {
   content: "|";
   color: #ffec00;
   animation: cursor-blink 0.7s steps(1, end) infinite;
+}
+
+.boot-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 10px;
+}
+
+.boot-choice {
+  position: relative;
+  border: 2px solid #ffec00;
+  padding: 12px;
+  background: rgba(5, 5, 5, 0.78);
+  color: #f7f2dc;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.76);
+  font-size: clamp(0.86rem, 1.7vw, 1.1rem);
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.boot-choice small {
+  display: block;
+  margin-top: 7px;
+  color: #ffec00;
+  font-size: 0.66rem;
+  line-height: 1.25;
+}
+
+.boot-choice:hover,
+.boot-choice:focus-visible,
+.boot-choice.is-recommended {
+  background: #ffec00;
+  color: #080808;
+}
+
+.boot-choice:hover small,
+.boot-choice:focus-visible small,
+.boot-choice.is-recommended small {
+  color: #080808;
+}
+
+.boot-choice.is-recommended::after {
+  content: "recommended";
+  position: absolute;
+  top: -10px;
+  right: 8px;
+  border: 1px solid #080808;
+  padding: 3px 5px;
+  background: #b9ff00;
+  color: #080808;
+  font-size: 0.56rem;
+  line-height: 1;
+}
+
+.boot-hint {
+  min-height: 2.6em;
+  margin: 4px 0 0;
+  border-top: 1px solid rgba(255, 236, 0, 0.64);
+  padding-top: 9px;
+  color: #f7f2dc;
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
 .cursor-tag {
@@ -238,8 +305,7 @@ img {
 }
 
 .topbar nav,
-.toolbar,
-.language-switcher {
+.toolbar {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -248,10 +314,20 @@ img {
 
 .topbar nav {
   align-items: center;
+  justify-content: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.topbar nav::-webkit-scrollbar {
+  display: none;
 }
 
 .toolbar {
+  position: relative;
+  align-items: center;
   justify-content: flex-end;
+  flex-wrap: nowrap;
 }
 
 .topbar nav a,
@@ -265,14 +341,77 @@ img {
   white-space: nowrap;
 }
 
+.mode-switch {
+  min-width: 154px;
+  padding-block: 10px !important;
+  background: var(--hot) !important;
+  box-shadow: 4px 4px 0 #080808;
+}
+
+body.interactive-mode .mode-switch {
+  background: var(--acid) !important;
+}
+
+.icon-button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  padding: 0 !important;
+  font-size: 1rem !important;
+  line-height: 1;
+  box-shadow: 3px 3px 0 #080808;
+}
+
+.language-menu {
+  position: relative;
+}
+
+.language-switcher {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 520;
+  display: flex;
+  gap: 5px;
+  border: 1px solid #080808;
+  padding: 7px;
+  background: var(--paper);
+  box-shadow: 5px 5px 0 #080808;
+}
+
+.language-switcher[hidden] {
+  display: none;
+}
+
 .language-switcher button.is-active,
 .mode-button.is-active {
   background: var(--acid);
 }
 
+.mode-switch.is-active {
+  background: var(--hot) !important;
+  color: #fff;
+}
+
+body.interactive-mode .mode-switch {
+  background: var(--acid) !important;
+  color: #080808;
+}
+
 .shuffle-button {
   background: var(--hot) !important;
   color: #fff !important;
+}
+
+.desktop-shuffle {
+  position: absolute;
+  z-index: 16;
+  left: clamp(14px, 3vw, 38px);
+  bottom: 18px;
+  border-width: 2px !important;
+  padding: 10px 12px !important;
+  box-shadow: 7px 7px 0 #080808;
 }
 
 .desktop-hero {
@@ -281,6 +420,26 @@ img {
   overflow: hidden;
   isolation: isolate;
   background: #111;
+}
+
+body.interactive-mode .desktop-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.12) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    linear-gradient(90deg, rgba(185, 255, 0, 0.16), transparent 22%, rgba(255, 59, 46, 0.16));
+  mix-blend-mode: screen;
+  opacity: 0.32;
+  animation: signal-breath 4s steps(4, end) infinite;
 }
 
 .autoplay-frame {
@@ -395,6 +554,20 @@ img {
   font-size: 0.7rem;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+body.interactive-mode .status-panel {
+  background: rgba(8, 8, 8, 0.84);
+  color: #f7f2dc;
+  border-color: #f7f2dc;
+  box-shadow: 8px 8px 0 #080808;
+}
+
+body.interactive-mode .status-panel::before {
+  content: "APP PERFORMANCE MODE";
+  display: block;
+  margin-bottom: 4px;
+  color: var(--acid);
 }
 
 .living-marquee {
@@ -515,6 +688,12 @@ img {
 
 .folder.is-settling {
   animation: folder-settle 360ms cubic-bezier(0.2, 1.3, 0.35, 1);
+}
+
+.folder.is-shuffled {
+  animation:
+    folder-shuffle 420ms steps(2, end),
+    folder-breathe var(--breathe-speed, 8s) ease-in-out infinite 420ms;
 }
 
 .folder[data-key="sampling"] {
@@ -790,7 +969,8 @@ img {
 }
 
 body.reading-mode .desktop-hero,
-body.reading-mode .desktop-layer {
+body.reading-mode .desktop-layer,
+body.reading-mode .living-marquee {
   display: none;
 }
 
@@ -1342,8 +1522,15 @@ body.performance-mode .language-switcher button {
   box-shadow: none;
 }
 
+body.performance-mode .language-switcher {
+  border-color: var(--line);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
 body.performance-mode .language-switcher button.is-active,
 body.performance-mode .mode-button.is-active,
+body.performance-mode .icon-button.is-active,
 body.performance-mode .edit-panel button {
   background: var(--acid);
   color: #080808;
@@ -1538,6 +1725,29 @@ body.performance-mode .window-meta span {
   }
 }
 
+@keyframes folder-shuffle {
+  0%,
+  100% {
+    filter: none;
+  }
+
+  45% {
+    translate: 5px -4px;
+    filter: invert(1) saturate(1.6);
+  }
+}
+
+@keyframes signal-breath {
+  0%,
+  100% {
+    opacity: 0.18;
+  }
+
+  50% {
+    opacity: 0.46;
+  }
+}
+
 @keyframes puma-drift {
   0%,
   100% {
@@ -1587,11 +1797,13 @@ body.performance-mode .window-meta span {
 
 @media (max-width: 1050px) {
   .topbar {
-    grid-template-columns: max-content minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) max-content;
   }
 
-  .toolbar {
+  .topbar nav {
     grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
   }
 
   .hero-image {
@@ -1611,25 +1823,43 @@ body.performance-mode .window-meta span {
 
   .topbar {
     position: relative;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: 7px;
+  }
+
+  .boot-log {
+    max-height: calc(100svh - 28px);
+    overflow-y: auto;
+  }
+
+  .boot-actions {
     grid-template-columns: 1fr;
   }
 
   .topbar nav {
-    overflow-x: visible;
-    flex-wrap: wrap;
+    grid-column: 1 / -1;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 3px;
   }
 
   .topbar nav a {
-    flex: 0 1 auto;
+    flex: 0 0 auto;
   }
 
   .toolbar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    justify-content: flex-end;
   }
 
-  .language-switcher {
-    grid-column: 1 / -1;
+  .mode-switch {
+    min-width: 118px;
+    padding-inline: 8px !important;
+    font-size: 0.66rem !important;
+  }
+
+  .icon-button {
+    width: 34px;
+    height: 34px;
   }
 
   .desktop-hero {
@@ -1670,6 +1900,15 @@ body.performance-mode .window-meta span {
     min-height: 94px;
     margin: 10px 0;
     transform: none !important;
+    touch-action: manipulation;
+  }
+
+  .desktop-shuffle {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: 100%;
+    margin: 0 0 14px;
   }
 
   .reading-tabs,
